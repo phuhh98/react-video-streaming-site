@@ -13,7 +13,8 @@ export default function FilmList(props) {
 					imgAlt: film.name,
 					genres: film.genres,
 					filmTitle: film.name,
-					rating: film.rating.average
+					rating: film.rating.average,
+					id: film.id
 				};
 				// console.log(filmData);
 				return (

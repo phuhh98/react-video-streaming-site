@@ -5,10 +5,10 @@ import {
 	Card,
 	CardBody,
 	CardTitle,
-	CardText,
 	CardSubtitle,
 	CardImg,
-	Button
+	Button,
+	UncontrolledTooltip
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -76,16 +76,31 @@ export default function FilmCard(props) {
 									className="fa-xl"
 									style={{ color: heartColor }}
 									onClick={changeFavorite}
+									id={`fav-${props.data.id}`}
 								/>
+								<UncontrolledTooltip
+									placement="bottom"
+									target={`fav-${props.data.id}`}
+								>
+									Mark as favorite
+								</UncontrolledTooltip>
 							</CursorHover>
+
 							<CursorHover>
 								<FontAwesomeIcon
 									icon={faThumbsUp}
 									className="fa-xl"
 									style={{ color: likeColor }}
 									onClick={changeLike}
+									id={`like-${props.data.id}`}
 								/>
 							</CursorHover>
+							<UncontrolledTooltip
+								placement="right"
+								target={`like-${props.data.id}`}
+							>
+								Give a like
+							</UncontrolledTooltip>
 						</div>
 					</Container>
 				</CardBody>
