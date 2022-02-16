@@ -11,7 +11,9 @@ export default function AppRouter() {
 		<Routes>
 			<Route path="/" element={<CommonLayout />}>
 				<Route index element={<Homepage />} />
-				<Route path="home" element={<Homepage />} />
+				<Route path="home/" element={<Homepage />}>
+					<Route path=":pageNumber" element={<Homepage />} />
+				</Route>
 				<Route path="about" element={<About />} />
 				<Route path="contact" element={<Contact />} />
 				<Route path="*" element={<NotFound />} />
