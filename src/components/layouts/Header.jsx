@@ -4,6 +4,8 @@ import { Nav, NavItem } from 'reactstrap';
 
 import ImageContainer from '../imageContainer/ImageContainer';
 import logo from '../../logo.png';
+import StyledLink from '../utilWrapper/StyledLink';
+import WhiteGrayLink from '../utilWrapper/WhiteGrayLink';
 
 export default function Header(props) {
 	return (
@@ -19,10 +21,9 @@ export default function Header(props) {
 				color: '#fff'
 			}}
 		>
-			<Link to="/home" style={{ gridColumn: '1/2', gridRow: '1/3' }}>
-				{' '}
+			<StyledLink to="/home" style={{ gridColumn: '1/2', gridRow: '1/3' }}>
 				<ImageContainer src={logo} width="120px"></ImageContainer>
-			</Link>
+			</StyledLink>
 			<Nav
 				pills
 				style={{
@@ -36,13 +37,13 @@ export default function Header(props) {
 				}}
 			>
 				<NavItem>
-					<Link to="/home">Home page</Link>
+					<WhiteGrayLink to="/home">Home page</WhiteGrayLink>
 				</NavItem>
 				<NavItem>
-					<Link to="/about">About us</Link>
+					<WhiteGrayLink to="/about">About us</WhiteGrayLink>
 				</NavItem>
 				<NavItem>
-					<Link to="/contact">Contact</Link>
+					<WhiteGrayLink to="/contact">Contact</WhiteGrayLink>
 				</NavItem>
 			</Nav>
 			<h2
