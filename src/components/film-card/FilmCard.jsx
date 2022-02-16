@@ -27,7 +27,7 @@ export default function FilmCard(props) {
 
 	return (
 		<>
-			<Card style={{ marginBottom: '20px', height: '450px' }}>
+			<Card style={{ marginBottom: '20px', height: '475px' }}>
 				<CardImg
 					alt={props.data.imgAlt}
 					src={props.data.imgSrc}
@@ -43,7 +43,7 @@ export default function FilmCard(props) {
 							overflow: 'hidden',
 							textOverflow: 'ellipsis',
 							display: '-webkit-box',
-							WebkitLineClamp: '3',
+							WebkitLineClamp: '2',
 							WebkitBoxOrient: 'vertical'
 						}}
 					>
