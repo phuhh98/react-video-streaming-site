@@ -23,7 +23,6 @@ export default function FilmCard(props) {
 	const changeLike = () => {
 		setLikeColor(likeColor === 'gray' ? 'turquoise' : 'gray');
 	};
-	console.log(props.data);
 
 	return (
 		<>
