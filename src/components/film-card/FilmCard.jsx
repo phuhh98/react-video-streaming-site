@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 
 import {
+	Container,
 	Card,
 	CardBody,
 	CardTitle,
 	CardText,
 	CardSubtitle,
-	CardImg
+	CardImg,
+	Button
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
+import CursorHover from '../utilWrapper/CursorHover';
 
 export default function FilmCard(props) {
 	let [heartColor, setHeartColor] = useState('gray');
@@ -20,49 +23,74 @@ export default function FilmCard(props) {
 	const changeLike = () => {
 		setLikeColor(likeColor === 'gray' ? 'turquoise' : 'gray');
 	};
+	console.log(props.data);
 
 	return (
-		<div>
-			<Card style={{ marginBottom: '20px' }}>
+		<>
+			<Card style={{ marginBottom: '20px', height: '450px' }}>
 				<CardImg
-					alt="Under the dome"
-					src="https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"
+					alt={props.data.imgAlt}
+					src={props.data.imgSrc}
 					top
-					width="100%"
+					height="300px"
 				/>
-				<CardBody>
-					<CardTitle tag="h5">Under the Dome</CardTitle>
-					<CardSubtitle className="mb-2 text-muted" tag="h6">
-						Drama &bull; Science-Fiction &bull; Thriller
-					</CardSubtitle>
-					<FontAwesomeIcon
-						icon={faHeart}
-						style={{ color: heartColor }}
-						onClick={changeFavorite}
-					/>
-					<FontAwesomeIcon
-						icon={faThumbsUp}
-						style={{ color: likeColor }}
-						onClick={changeLike}
-					/>
-					{/* <CardText
+				<CardBody style={{ position: 'relative' }}>
+					<CardTitle tag="h5">{props.data.filmTitle}</CardTitle>
+					<CardSubtitle
+						className="mb-2 text-muted"
+						tag="h6"
 						style={{
-							display: '-webkit-box',
-							WebkitBoxOrient: 'vertical',
-							WebkitLineClamp: '3',
 							overflow: 'hidden',
-							textOverflow: 'ellipsis'
+							textOverflow: 'ellipsis',
+							display: '-webkit-box',
+							WebkitLineClamp: '3',
+							WebkitBoxOrient: 'vertical'
 						}}
 					>
-						<b>Under the Dome</b> is the story of a small town that is suddenly
-						and inexplicably sealed off from the rest of the world by an
-						enormous transparent dome. The town's inhabitants must deal with
-						surviving the post-apocalyptic conditions while searching for
-						answers about the dome, where it came from and if and when it will
-						go away.
-					</CardText> */}
+						{props.data.genres.join(' • ')}
+					</CardSubtitle>
+					<Container
+						style={{
+							padding: '0',
+							width: '87%',
+							display: 'flex',
+							justifyContent: 'space-between',
+							position: 'absolute',
+							bottom: '0.7rem'
+						}}
+					>
+						<Button disabled style={{ padding: '5px 10px' }}>
+							Rate: {props.data.rating}&nbsp;
+							<FontAwesomeIcon icon={faStar} style={{ color: 'yellow' }} />
+						</Button>
+						<div
+							style={{
+								width: '30%',
+								display: 'flex',
+								justifyContent: 'space-between',
+								alignItems: 'center'
+							}}
+						>
+							<CursorHover>
+								<FontAwesomeIcon
+									icon={faHeart}
+									className="fa-xl"
+									style={{ color: heartColor }}
+									onClick={changeFavorite}
+								/>
+							</CursorHover>
+							<CursorHover>
+								<FontAwesomeIcon
+									icon={faThumbsUp}
+									className="fa-xl"
+									style={{ color: likeColor }}
+									onClick={changeLike}
+								/>
+							</CursorHover>
+						</div>
+					</Container>
 				</CardBody>
 			</Card>
-		</div>
+		</>
 	);
 }
