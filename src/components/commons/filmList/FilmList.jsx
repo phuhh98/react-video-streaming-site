@@ -9,7 +9,7 @@ export default function FilmList(props) {
 		<Row lg="4" md="3" sm="2" xs="1">
 			{props.filmList.map(film => {
 				const filmData = {
-					imgSrc: film.image.original,
+					imgSrc: film.image.medium,
 					imgAlt: film.name,
 					genres: film.genres,
 					filmTitle: film.name,
