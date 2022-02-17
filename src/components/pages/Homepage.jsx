@@ -18,6 +18,7 @@ export default React.memo(function HomePage() {
 			: 0
 	);
 	const ItemPerPage = 20;
+	const pathname = useLocation().pathname;
 	//Fetch data to filmData
 	useEffect(() => {
 		let queryPage = 0;
@@ -53,8 +54,14 @@ export default React.memo(function HomePage() {
 				);
 				setPageData(displayItems);
 			});
-	}, [pageNumber]);
+	}, [pageNumber, params.pageNumber]);
 
+	//reset pageNumber to 0 when ever hit the Homepage link
+	useEffect(() => {
+		if (pathname === '/home') {
+			setPageNumber(0);
+		}
+	}, [pathname]);
 	return (
 		<>
 			<Container
