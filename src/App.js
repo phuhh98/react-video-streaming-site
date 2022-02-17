@@ -9,7 +9,20 @@ function App() {
 		setFilmData,
 		login: false,
 		likedShowIds: [],
-		favoriteShowIds: []
+		favoriteShowIds: [],
+		genreList: [
+			'adventure',
+			'comedy',
+			'action',
+			'horror',
+			'thriller',
+			'science-fiction',
+			'crime',
+			'fiction',
+			'drama',
+			'mystery',
+			'anime'
+		].sort((a, b) => (a > b ? 1 : -1))
 	};
 	return (
 		<div className="App">

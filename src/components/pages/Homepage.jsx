@@ -9,7 +9,7 @@ import StyledLink from '../utilWrapper/StyledLink';
 import PrevNextButton from '../commons/prevNextButtons/PrevNextButtons';
 
 export default React.memo(function HomePage() {
-	const { filmData, setFilmData } = useContext(AppContext);
+	const { filmData, setFilmData, genreList } = useContext(AppContext);
 	const [pageData, setPageData] = useState([]);
 	const params = useParams();
 	const [pageNumber, setPageNumber] = useState(
@@ -25,20 +25,23 @@ export default React.memo(function HomePage() {
 		const ItemPerQuery = 250;
 		let tempFilmData = !!filmData.length ? filmData : [];
 
-		if (!!tempFilmData.length) {
-			while ((pageNumber + 1) * ItemPerPage >= (queryPage + 1) * ItemPerQuery) {
-				queryPage++;
-			}
-		}
 		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length && !!pageNumber) {
 			const startItemIndex = 0 + ItemPerPage * pageNumber;
 			setPageData(filmData.slice(startItemIndex, startItemIndex + ItemPerPage));
 			return;
 		}
+		if (!!tempFilmData.length) {
+			while ((pageNumber + 1) * ItemPerPage >= (queryPage + 1) * ItemPerQuery) {
+				queryPage++;
+			}
+			if (pageNumber === 0) {
+				tempFilmData = [];
+			}
+		}
 
 		fetch(`https://api.tvmaze.com/shows?page=${queryPage}`)
 			.then(response => response.json())
-			.then(async data => {
+			.then(data => {
 				if (queryPage === 0) {
 					!tempFilmData.length &&
 						tempFilmData.push(...data) &&
@@ -77,9 +80,7 @@ export default React.memo(function HomePage() {
 					}}
 				>
 					<Container title="menu-left group">
-						<GenreDropDown
-							genreList={['comedy', 'action', 'horror', 'thriller']}
-						></GenreDropDown>
+						<GenreDropDown genreList={genreList}></GenreDropDown>
 						<Button color="danger" style={{ marginLeft: '10px' }}>
 							<StyledLink to="/liked" style={{ color: 'white' }}>
 								Liked
