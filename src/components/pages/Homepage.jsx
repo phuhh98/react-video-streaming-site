@@ -6,10 +6,11 @@ import AppContext from '../contexts/AppContext';
 import FilmList from '../commons/filmList/FilmList';
 import GenreDropDown from '../commons/genreDropDown/GenreDropDown';
 import StyledLink from '../utilWrapper/StyledLink';
+import PrevNextButton from '../commons/prevNextButtons/PrevNextButtons';
+
 export default React.memo(function HomePage() {
 	const [filmData, setFilmData] = useContext(AppContext);
 	const [pageData, setPageData] = useState([]);
-
 	const params = useParams();
 	const [pageNumber, setPageNumber] = useState(
 		Number.isInteger(parseInt(params.pageNumber))
@@ -17,15 +18,42 @@ export default React.memo(function HomePage() {
 			: 0
 	);
 	const ItemPerPage = 20;
-	//Fetch data to filmData < Context
+	//Fetch data to filmData
 	useEffect(() => {
-		fetch('https://api.tvmaze.com/shows')
-			.then(response => response.json())
-			.then(data => {
-				setFilmData(data);
-				const startItem = 0 + ItemPerPage * pageNumber;
+		let queryPage = 0;
+		const ItemPerQuery = 250;
+		let tempFilmData = !!filmData.length ? filmData : [];
 
-				setPageData(data.slice(startItem, startItem + ItemPerPage));
+		if (!!tempFilmData.length) {
+			while ((pageNumber + 1) * ItemPerPage >= (queryPage + 1) * ItemPerQuery) {
+				queryPage++;
+			}
+		}
+		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length) {
+			console.log('skipped');
+			const startItemIndex = 0 + ItemPerPage * pageNumber;
+			setPageData(filmData.slice(startItemIndex, startItemIndex + ItemPerPage));
+			return;
+		}
+
+		fetch(`https://api.tvmaze.com/shows?page=${queryPage}`)
+			.then(response => response.json())
+			.then(async data => {
+				if (queryPage === 0) {
+					!tempFilmData.length &&
+						tempFilmData.push(...data) &&
+						setFilmData(tempFilmData);
+				} else if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
+					tempFilmData.push(...data);
+					setFilmData(tempFilmData);
+				}
+				console.log('fetched');
+				const startItemIndex = 0 + ItemPerPage * pageNumber;
+				const displayItems = tempFilmData.slice(
+					startItemIndex,
+					startItemIndex + ItemPerPage
+				);
+				setPageData(displayItems);
 			});
 	}, [pageNumber]);
 
@@ -62,36 +90,10 @@ export default React.memo(function HomePage() {
 						title="menu-right group"
 						style={{ display: 'flex', justifyContent: 'flex-end' }}
 					>
-						<StyledLink
-							to={`/home/${pageNumber - 1 < 0 ? 0 : pageNumber - 1}`}
-							style={{ color: 'white' }}
-							onClick={() =>
-								setPageNumber(() => (pageNumber - 1 < 0 ? 0 : pageNumber - 1))
-							}
-						>
-							<Button color="primary" style={{ marginLeft: '10px' }}>
-								Previous
-							</Button>
-						</StyledLink>
-
-						<StyledLink
-							to={`/home/${
-								(pageNumber + 1) * ItemPerPage > filmData.length
-									? pageNumber
-									: pageNumber + 1
-							}`}
-							style={{ color: 'white' }}
-							onClick={() => {
-								(pageNumber + 1) * ItemPerPage >= filmData.length
-									? setPageNumber(pageNumber)
-									: setPageNumber(pageNumber + 1);
-							}}
-						>
-							{' '}
-							<Button color="primary" style={{ marginLeft: '10px' }}>
-								Next
-							</Button>
-						</StyledLink>
+						<PrevNextButton
+							setPageNumber={setPageNumber}
+							pageNumber={pageNumber}
+						></PrevNextButton>
 					</Container>
 				</Container>
 
