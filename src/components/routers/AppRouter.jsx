@@ -6,12 +6,14 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import NotFound from '../pages/NotFound';
 import Genre from '../pages/Genre';
+import Index from '../pages/Index';
 
 export default function AppRouter() {
 	return (
 		<Routes>
 			<Route path="/" element={<CommonLayout />}>
-				<Route index element={<Homepage />} />
+				<Route index element={<Index />} />
+
 				<Route path="home" element={<Homepage />}>
 					<Route path=":pageNumber" element={<Homepage />} />
 				</Route>
