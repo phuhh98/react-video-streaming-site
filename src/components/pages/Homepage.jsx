@@ -1,18 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import {
-	Container,
-	Row,
-	Col,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem,
-	Button
-} from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 
 import AppContext from '../contexts/AppContext';
-import FilmList from '../general/filmList/FilmList';
+import FilmList from '../commons/filmList/FilmList';
+import GenreDropDown from '../commons/genreDropDown/GenreDropDown';
 import StyledLink from '../utilWrapper/StyledLink';
 export default React.memo(function HomePage() {
 	const [filmData, setFilmData] = useContext(AppContext);
@@ -52,33 +44,9 @@ export default React.memo(function HomePage() {
 					}}
 				>
 					<Container title="menu-left group">
-						<UncontrolledDropdown style={{ display: 'inline-block' }}>
-							<DropdownToggle caret color="secondary">
-								Genre
-							</DropdownToggle>
-							<DropdownMenu container="body">
-								<StyledLink to="/search?q=comedy">
-									<DropdownItem onClick={function noRefCheck() {}}>
-										Comedy
-									</DropdownItem>
-								</StyledLink>
-								<StyledLink to="/search?q=action">
-									<DropdownItem onClick={function noRefCheck() {}}>
-										Action
-									</DropdownItem>
-								</StyledLink>
-								<StyledLink to="/search?q=thriller">
-									<DropdownItem onClick={function noRefCheck() {}}>
-										Thriller
-									</DropdownItem>
-								</StyledLink>
-								<StyledLink to="/search?q=horror">
-									<DropdownItem onClick={function noRefCheck() {}}>
-										Horror
-									</DropdownItem>
-								</StyledLink>
-							</DropdownMenu>
-						</UncontrolledDropdown>
+						<GenreDropDown
+							genreList={['comedy', 'action', 'horror', 'thriller']}
+						></GenreDropDown>
 						<Button color="danger" style={{ marginLeft: '10px' }}>
 							<StyledLink to="/liked" style={{ color: 'white' }}>
 								Liked
