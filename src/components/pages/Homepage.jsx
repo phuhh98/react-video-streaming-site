@@ -30,7 +30,6 @@ export default React.memo(function HomePage() {
 			}
 		}
 		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length) {
-			console.log('skipped');
 			const startItemIndex = 0 + ItemPerPage * pageNumber;
 			setPageData(filmData.slice(startItemIndex, startItemIndex + ItemPerPage));
 			return;
@@ -47,7 +46,6 @@ export default React.memo(function HomePage() {
 					tempFilmData.push(...data);
 					setFilmData(tempFilmData);
 				}
-				console.log('fetched');
 				const startItemIndex = 0 + ItemPerPage * pageNumber;
 				const displayItems = tempFilmData.slice(
 					startItemIndex,
