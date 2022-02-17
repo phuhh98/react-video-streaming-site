@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 
 import AppContext from '../contexts/AppContext';
-import FilmList from '../filmList/FilmList';
+import FilmList from '../general/filmList/FilmList';
 import StyledLink from '../utilWrapper/StyledLink';
 export default React.memo(function HomePage() {
 	const [filmData, setFilmData] = useContext(AppContext);

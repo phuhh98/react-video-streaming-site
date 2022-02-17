@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Nav, NavItem } from 'reactstrap';
 
-import ImageContainer from '../imageContainer/ImageContainer';
+import ImageContainer from '../general/imageContainer/ImageContainer';
 import logo from '../../logo.png';
 import StyledLink from '../utilWrapper/StyledLink';
 import WhiteGrayLink from '../utilWrapper/WhiteGrayLink';
