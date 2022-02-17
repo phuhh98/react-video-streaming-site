@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { Button } from 'reactstrap';
 
@@ -7,13 +8,18 @@ import StyledLink from '../../utilWrapper/StyledLink';
 export default function PrevNextButton(props) {
 	const pageNumber = props.pageNumber;
 	const setPageNumber = props.setPageNumber;
-	const ItemPerPage = props.itemPerPage;
-	const filmDataLength = props.filmDataLength;
+	const pathArr = useLocation().pathname.split('/');
+
+	if (pathArr.includes(pageNumber.toString())) {
+		pathArr.pop();
+	}
+	pathArr.join('/');
+	const path = pathArr.join('/');
 
 	return (
 		<>
 			<StyledLink
-				to={`/home/${pageNumber - 1 < 0 ? 0 : pageNumber - 1}`}
+				to={`${path + '/'}${pageNumber - 1 < 0 ? 0 : pageNumber - 1}`}
 				style={{ color: 'white' }}
 				onClick={() =>
 					setPageNumber(() => (pageNumber - 1 < 0 ? 0 : pageNumber - 1))
@@ -25,18 +31,10 @@ export default function PrevNextButton(props) {
 			</StyledLink>
 
 			<StyledLink
-				to={`/home/${
-					pageNumber + 1
-					// (pageNumber + 1) * ItemPerPage > filmDataLength
-					// 	? pageNumber
-					// 	: pageNumber + 1
-				}`}
+				to={`${path + '/'}${pageNumber + 1}`}
 				style={{ color: 'white' }}
 				onClick={() => {
 					setPageNumber(pageNumber + 1);
-					// (pageNumber + 1) * ItemPerPage >= filmDataLength
-					// 	? setPageNumber(pageNumber)
-					// 	: setPageNumber(pageNumber + 1);
 				}}
 			>
 				{' '}
