@@ -8,12 +8,7 @@ import {
 } from 'reactstrap';
 
 import StyledLink from '../../utilWrapper/StyledLink';
-
-function firstLetterUppderCase(_string) {
-	let temp = _string.toString().toLowerCase();
-	temp = temp.slice(0, 1).toUpperCase() + temp.slice(1);
-	return temp;
-}
+import firstLetterUpperCase from '../../helperFuncs/firstLetterUpperCase';
 
 export default function GenreDropDown(props) {
 	const genreList = props.genreList; // an Array
@@ -26,7 +21,7 @@ export default function GenreDropDown(props) {
 			<DropdownMenu container="body">
 				{genreList.map(genre => (
 					<StyledLink to={`/genre/${genre}`} key={genre}>
-						<DropdownItem>{firstLetterUppderCase(genre)}</DropdownItem>
+						<DropdownItem>{firstLetterUpperCase(genre)}</DropdownItem>
 					</StyledLink>
 				))}
 			</DropdownMenu>
