@@ -9,7 +9,7 @@ import StyledLink from '../utilWrapper/StyledLink';
 import PrevNextButton from '../commons/prevNextButtons/PrevNextButtons';
 
 export default React.memo(function HomePage() {
-	const [filmData, setFilmData] = useContext(AppContext);
+	const { filmData, setFilmData } = useContext(AppContext);
 	const [pageData, setPageData] = useState([]);
 	const params = useParams();
 	const [pageNumber, setPageNumber] = useState(
@@ -29,7 +29,7 @@ export default React.memo(function HomePage() {
 				queryPage++;
 			}
 		}
-		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length) {
+		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length && !!pageNumber) {
 			const startItemIndex = 0 + ItemPerPage * pageNumber;
 			setPageData(filmData.slice(startItemIndex, startItemIndex + ItemPerPage));
 			return;
@@ -91,6 +91,7 @@ export default React.memo(function HomePage() {
 						<PrevNextButton
 							setPageNumber={setPageNumber}
 							pageNumber={pageNumber}
+							path="home"
 						></PrevNextButton>
 					</Container>
 				</Container>
