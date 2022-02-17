@@ -9,14 +9,16 @@ import {
 
 import StyledLink from '../../utilWrapper/StyledLink';
 import firstLetterUpperCase from '../../helperFuncs/firstLetterUpperCase';
+import { useParams } from 'react-router-dom';
 
 export default function GenreDropDown(props) {
 	const genreList = props.genreList; // an Array
-
+	const params = useParams();
+	const currentGenreTitle = params.genre ? params.genre : 'genre';
 	return (
 		<UncontrolledDropdown style={{ display: 'inline-block' }}>
 			<DropdownToggle caret color="secondary">
-				Genre
+				{firstLetterUpperCase(currentGenreTitle)}
 			</DropdownToggle>
 			<DropdownMenu container="body">
 				{genreList.map(genre => (
