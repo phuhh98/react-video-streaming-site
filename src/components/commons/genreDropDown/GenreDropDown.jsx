@@ -25,7 +25,7 @@ export default function GenreDropDown(props) {
 			</DropdownToggle>
 			<DropdownMenu container="body">
 				{genreList.map(genre => (
-					<StyledLink to={`home/${genre}`}>
+					<StyledLink to={`/genre/${genre}`} key={genre}>
 						<DropdownItem>{firstLetterUppderCase(genre)}</DropdownItem>
 					</StyledLink>
 				))}
