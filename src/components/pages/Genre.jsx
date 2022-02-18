@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Container, Button } from 'reactstrap';
 
@@ -9,12 +9,11 @@ import StyledLink from '../utilWrapper/StyledLink';
 import PrevNextButton from '../commons/prevNextButtons/PrevNextButtons';
 
 import { genreFilter } from '../helperFuncs/dataFilter';
+import { useFetchFilmData } from '../customHooks/useFetchData';
 
 export default React.memo(function HomePage() {
 	const { filmData, setFilmData, genreList } = useContext(AppContext);
 	const [pageData, setPageData] = useState([]);
-	const [queryPage, setQueryPage] = useState(0);
-	const [reupdate, setReupdate] = useState(false);
 	const pathname = useLocation().pathname;
 	const params = useParams();
 	const [pageNumber, setPageNumber] = useState(
@@ -22,58 +21,24 @@ export default React.memo(function HomePage() {
 			? parseInt(params.pageNumber)
 			: 0
 	);
-	const ItemPerPage = 20;
+
 	//Fetch data to filmData
-	useEffect(() => {
-		let tempQueryPage = queryPage;
-		const ItemPerQuery = 250;
-		let tempFilmData = !!filmData.length ? filmData : [];
-		tempFilmData = genreFilter(tempFilmData, params.genre);
+	useFetchFilmData(
+		filmData,
+		setFilmData,
+		pageData,
+		setPageData,
+		pageNumber,
+		setPageNumber,
+		pathname,
+		params
+	);
 
-		if (!!tempFilmData.length) {
-			if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-				tempQueryPage++;
-				setQueryPage(tempQueryPage);
-			}
-		}
-
-		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length && !!pageNumber) {
-			const startItemIndex = 0 + ItemPerPage * pageNumber;
-			setPageData(filmData.slice(startItemIndex, startItemIndex + ItemPerPage));
-			return;
-		}
-
-		fetch(`https://api.tvmaze.com/shows?page=${tempQueryPage}`)
-			.then(response => response.json())
-			.then(data => {
-				if (queryPage === 0) {
-					!tempFilmData.length &&
-						tempFilmData.push(...data) &&
-						setFilmData(tempFilmData);
-				} else if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-					let filteredFilms = genreFilter(data, params.genre);
-					tempFilmData.push(...filteredFilms);
-					if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-						setFilmData(tempFilmData);
-						setReupdate(true);
-					}
-				}
-				console.log('fetched');
-				const startItemIndex = 0 + ItemPerPage * pageNumber;
-				const displayItems = tempFilmData.slice(
-					startItemIndex,
-					startItemIndex + ItemPerPage
-				);
-				setPageData(displayItems);
-				setReupdate(true);
-			});
-	}, [pageNumber, params.genre, params.pageNumber, reupdate]);
-	//
-	useEffect(() => {
-		if (pathname === '/home') {
-			setPageNumber(0);
-		}
-	}, [pathname]);
+	// useEffect(() => {
+	// 	if (pathname === '/home') {
+	// 		setPageNumber(0);
+	// 	}
+	// }, [pathname]);
 	return (
 		<>
 			<Container
@@ -108,8 +73,7 @@ export default React.memo(function HomePage() {
 						<PrevNextButton
 							setPageNumber={setPageNumber}
 							pageNumber={pageNumber}
-							itemPerPage={ItemPerPage}
-							filmDataLength={filmData.length}
+							path=""
 						></PrevNextButton>
 					</Container>
 				</Container>
