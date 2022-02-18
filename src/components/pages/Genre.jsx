@@ -31,14 +31,10 @@ export default React.memo(function HomePage() {
 		pageNumber,
 		setPageNumber,
 		pathname,
-		params
+		params,
+		genreFilter
 	);
 
-	// useEffect(() => {
-	// 	if (pathname === '/home') {
-	// 		setPageNumber(0);
-	// 	}
-	// }, [pathname]);
 	return (
 		<>
 			<Container
