@@ -31,51 +31,6 @@ export default React.memo(function HomePage() {
 		pathname,
 		params
 	);
-	// useEffect(() => {
-	// 	let queryPage = 0;
-	// 	const ItemPerQuery = 250;
-	// 	let tempFilmData = !!filmData.length ? filmData : [];
-
-	// 	if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length && !!pageNumber) {
-	// 		const startItemIndex = 0 + ItemPerPage * pageNumber;
-	// 		setPageData(filmData.slice(startItemIndex, startItemIndex + ItemPerPage));
-	// 		return;
-	// 	}
-	// 	if (!!tempFilmData.length) {
-	// 		while ((pageNumber + 1) * ItemPerPage >= (queryPage + 1) * ItemPerQuery) {
-	// 			queryPage++;
-	// 		}
-	// 		if (pageNumber === 0) {
-	// 			tempFilmData = [];
-	// 		}
-	// 	}
-
-	// 	fetch(`https://api.tvmaze.com/shows?page=${queryPage}`)
-	// 		.then(response => response.json())
-	// 		.then(data => {
-	// 			if (queryPage === 0) {
-	// 				!tempFilmData.length &&
-	// 					tempFilmData.push(...data) &&
-	// 					setFilmData(tempFilmData);
-	// 			} else if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-	// 				tempFilmData.push(...data);
-	// 				setFilmData(tempFilmData);
-	// 			}
-	// 			const startItemIndex = 0 + ItemPerPage * pageNumber;
-	// 			const displayItems = tempFilmData.slice(
-	// 				startItemIndex,
-	// 				startItemIndex + ItemPerPage
-	// 			);
-	// 			setPageData(displayItems);
-	// 		});
-	// }, [pageNumber, params.pageNumber]);
-
-	//reset pageNumber to 0 when ever hit the Homepage link
-	// useEffect(() => {
-	// 	if (pathname === '/home') {
-	// 		setPageNumber(0);
-	// 	}
-	// }, [pathname]);
 	return (
 		<>
 			<Container
