@@ -13,7 +13,7 @@ export default function FilmList(props) {
 					imgAlt: film.name,
 					genres: film.genres,
 					filmTitle: film.name,
-					rating: film.rating.average,
+					rating: !!film.rating.average ? film.rating.average : 'N/A',
 					id: film.id
 				};
 				return (
