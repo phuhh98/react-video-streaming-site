@@ -25,6 +25,13 @@ export function useFetchFilmData(
 
 		tempFilmData = filter(tempFilmData, params);
 
+		//Reset queryPage on page 0
+		if (parseInt(params.pageNumber) === 0 && queryPage !== 0) {
+			setQueryPage(0);
+			setReupdate(!reupdate);
+			return;
+		}
+
 		//if current item list is enough => trigger render
 		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length && !!pageNumber) {
 			const startItemIndex = 0 + ItemPerPage * pageNumber;
@@ -57,9 +64,9 @@ export function useFetchFilmData(
 				setFilmData(tempFilmData);
 				console.log(tempFilmData);
 
-				// if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-				// 	setReupdate(!reupdate);
-				// }
+				if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
+					setReupdate(!reupdate);
+				}
 
 				console.log('fetched');
 				const startItemIndex = 0 + ItemPerPage * pageNumber;
