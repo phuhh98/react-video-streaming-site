@@ -9,7 +9,7 @@ export function useFetchFilmData(
 	setPageNumber,
 	pathname,
 	params,
-	genreFilter = noFilter
+	filter = noFilter
 ) {
 	//api paging
 	const [queryPage, setQueryPage] = useState(0);
@@ -18,56 +18,61 @@ export function useFetchFilmData(
 
 	//item per view page
 	const ItemPerPage = 20;
-	const watcher = [pageNumber, params.genre, params.pageNumber, reupdate];
-	// console.log(params);
 	useEffect(() => {
+		//current api query page
 		let tempQueryPage = queryPage;
 		let tempFilmData = !!filmData.length ? filmData : [];
-		tempFilmData = genreFilter(tempFilmData, params.genre ? params.genre : '');
-		console.log('filter for: ', params.genre);
 
-		if (!!tempFilmData.length) {
-			if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-				tempQueryPage++;
-				setQueryPage(tempQueryPage);
-				return;
-			}
-		}
+		tempFilmData = filter(tempFilmData, params);
 
+		//if current item list is enough => trigger render
 		if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length && !!pageNumber) {
 			const startItemIndex = 0 + ItemPerPage * pageNumber;
 			setPageData(filmData.slice(startItemIndex, startItemIndex + ItemPerPage));
 			return;
 		}
 
+		//if current items list is not enough => increase queryPage on api
+		if (!!tempFilmData.length) {
+			if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
+				tempQueryPage++;
+				setQueryPage(tempQueryPage);
+			}
+		}
+
 		fetch(`https://api.tvmaze.com/shows?page=${tempQueryPage}`)
 			.then(response => response.json())
 			.then(data => {
-				if (queryPage === 0) {
-					!tempFilmData.length &&
-						tempFilmData.push(...data) &&
-						setFilmData(tempFilmData);
-				} else if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-					let filteredFilms = genreFilter(data, params.genre);
+				let filteredFilms = filter(data, params.genre);
+
+				//on zero page => reset tempFilmData
+
+				if (!params.pageNumber || parseInt(params.pageNumber) === 0) {
+					console.log('reset temp');
+					tempFilmData = [];
 					tempFilmData.push(...filteredFilms);
-					if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
-						setFilmData(tempFilmData);
-						setReupdate(true);
-					}
+				} else {
+					tempFilmData.push(...filteredFilms);
 				}
-				console.log('fetched');
+				setFilmData(tempFilmData);
 				console.log(tempFilmData);
+
+				// if ((pageNumber + 1) * ItemPerPage >= tempFilmData.length) {
+				// 	setReupdate(!reupdate);
+				// }
+
+				console.log('fetched');
 				const startItemIndex = 0 + ItemPerPage * pageNumber;
 				const displayItems = tempFilmData.slice(
 					startItemIndex,
 					startItemIndex + ItemPerPage
 				);
 				setPageData(displayItems);
-				setReupdate(true);
 			});
-	}, [...watcher]);
+	}, [pageNumber, params.genre, params.pageNumber, reupdate]);
 
 	useEffect(() => {
+		console.log(pathname);
 		if (pathname === '/home') {
 			setPageNumber(0);
 		}
