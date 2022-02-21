@@ -1,7 +1,10 @@
 export const firstLetterUpperCase = function (_string) {
-  let temp = _string.toString().toLowerCase();
-  temp = temp.slice(0, 1).toUpperCase() + temp.slice(1);
-  return temp;
+  return _string
+    .toString()
+    .toLowerCase()
+    .split(/[ -_]/)
+    .map(word => word.slice(0, 1).toUpperCase() + word.slice(1))
+    .join('-');
 };
 
 export const genreFilter = function (data, { genre }) {
