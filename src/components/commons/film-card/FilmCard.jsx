@@ -31,7 +31,7 @@ export default function FilmCard(props) {
 					alt={props.data.imgAlt}
 					src={props.data.imgSrc}
 					top
-					height="300px"
+					height="350px"
 				/>
 				<CardBody style={{ position: 'relative' }}>
 					<CardTitle tag="h5">{props.data.filmTitle}</CardTitle>
@@ -78,12 +78,6 @@ export default function FilmCard(props) {
 									onClick={changeFavorite}
 									id={`fav-${props.data.id}`}
 								/>
-								<UncontrolledTooltip
-									placement="bottom"
-									target={`fav-${props.data.id}`}
-								>
-									Mark as favorite
-								</UncontrolledTooltip>
 							</CursorHover>
 
 							<CursorHover>
@@ -95,12 +89,6 @@ export default function FilmCard(props) {
 									id={`like-${props.data.id}`}
 								/>
 							</CursorHover>
-							<UncontrolledTooltip
-								placement="right"
-								target={`like-${props.data.id}`}
-							>
-								Give a like
-							</UncontrolledTooltip>
 						</div>
 					</Container>
 				</CardBody>
