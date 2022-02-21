@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AppRouter from './components/routers/AppRouter';
-import AppContext from './components/contexts/AppContext';
+import AppContext from './components/commons/contexts/AppContext';
 
 function App() {
   const [filmData, setFilmData] = useState([]);

@@ -7,8 +7,8 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-import StyledLink from '../../utilWrapper/StyledLink';
-import { firstLetterUpperCase } from '../../helperFuncs/helperFuncs';
+import { NoUnderLinedLink } from '../utilWrapper/UtilWrapper';
+import { firstLetterUpperCase } from '../commons/helperFuncs/helperFuncs';
 import { useParams } from 'react-router-dom';
 
 export default function GenreDropDown(props) {
@@ -22,9 +22,9 @@ export default function GenreDropDown(props) {
       </DropdownToggle>
       <DropdownMenu container="body">
         {genreList.map(genre => (
-          <StyledLink to={`/genre/${genre}`} key={genre}>
+          <NoUnderLinedLink to={`/genre/${genre}`} key={genre}>
             <DropdownItem>{firstLetterUpperCase(genre)}</DropdownItem>
-          </StyledLink>
+          </NoUnderLinedLink>
         ))}
       </DropdownMenu>
     </UncontrolledDropdown>

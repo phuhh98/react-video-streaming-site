@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from './subComponents/Header';
-import Main from './subComponents/Main';
-import Footer from './subComponents/Footer';
+import Header from '../header/Header';
+import Main from '../main/Main';
+import Footer from '../footer/Footer';
 import { Outlet } from 'react-router-dom';
 
 export default function CommonLayout(props) {

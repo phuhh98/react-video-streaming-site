@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Row, Col } from 'reactstrap';
 
-import FilmCard from '../film-card/FilmCard';
+import FilmCard from '../filmCard/FilmCard';
 
 export default function FilmList(props) {
   return (

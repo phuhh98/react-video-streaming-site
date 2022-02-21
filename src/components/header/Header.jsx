@@ -1,10 +1,12 @@
 import React from 'react';
 import { Nav, NavItem } from 'reactstrap';
 
-import ImageContainer from '../../commons/imageContainer/ImageContainer';
-import logo from '../../../images/logo.png';
-import StyledLink from '../../utilWrapper/StyledLink';
-import WhiteGrayLink from '../../utilWrapper/WhiteGrayLink';
+import {
+  ImageContainer,
+  NoUnderLinedLink,
+  WhiteGrayLink,
+} from '../utilWrapper/UtilWrapper';
+import logo from '../../images/logo.png';
 
 export default function Header(props) {
   return (
@@ -20,9 +22,12 @@ export default function Header(props) {
         color: '#fff',
       }}
     >
-      <StyledLink to="/home" style={{ gridColumn: '1/2', gridRow: '1/3' }}>
+      <NoUnderLinedLink
+        to="/home"
+        style={{ gridColumn: '1/2', gridRow: '1/3' }}
+      >
         <ImageContainer src={logo} width="120px"></ImageContainer>
-      </StyledLink>
+      </NoUnderLinedLink>
       <Nav
         pills
         style={{

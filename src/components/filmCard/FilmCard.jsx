@@ -8,11 +8,10 @@ import {
   CardSubtitle,
   CardImg,
   Button,
-  UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
-import CursorHover from '../../utilWrapper/CursorHover';
+import { CursorHover } from '../utilWrapper/UtilWrapper';
 
 export default function FilmCard(props) {
   let [heartColor, setHeartColor] = useState('gray');

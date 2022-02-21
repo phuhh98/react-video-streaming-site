@@ -2,13 +2,14 @@ import React, { useContext, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Container, Button } from 'reactstrap';
 
-import AppContext from '../contexts/AppContext';
-import FilmList from '../commons/filmList/FilmList';
-import GenreDropDown from '../commons/genreDropDown/GenreDropDown';
-import StyledLink from '../utilWrapper/StyledLink';
-import PrevNextButton from '../commons/prevNextButtons/PrevNextButtons';
+import AppContext from '../../commons/contexts/AppContext';
+import FilmList from '../../filmList/FilmList';
+import GenreDropDown from '../../genreDropDown/GenreDropDown';
+import { NoUnderLinedLink } from '../../utilWrapper/UtilWrapper';
+import PrevNextButton from '../../prevNextButtons/PrevNextButtons';
 
-import { useFetchFilmData } from '../customHooks/useFetchData';
+import { genreFilter } from '../../commons/helperFuncs/helperFuncs';
+import { useFetchFilmData } from '../../commons/customHooks/useFetchData';
 
 export default React.memo(function HomePage() {
   const { filmData, setFilmData, genreList } = useContext(AppContext);
@@ -20,6 +21,7 @@ export default React.memo(function HomePage() {
       ? parseInt(params.pageNumber)
       : 0
   );
+
   //Fetch data to filmData
   useFetchFilmData(
     filmData,
@@ -29,8 +31,10 @@ export default React.memo(function HomePage() {
     pageNumber,
     setPageNumber,
     pathname,
-    params
+    params,
+    genreFilter
   );
+
   return (
     <>
       <Container
@@ -48,14 +52,14 @@ export default React.memo(function HomePage() {
           <Container title="menu-left group">
             <GenreDropDown genreList={genreList}></GenreDropDown>
             <Button color="danger" style={{ marginLeft: '10px' }}>
-              <StyledLink to="/liked" style={{ color: 'white' }}>
+              <NoUnderLinedLink to="/liked" style={{ color: 'white' }}>
                 Liked
-              </StyledLink>
+              </NoUnderLinedLink>
             </Button>
             <Button color="danger" style={{ marginLeft: '10px' }}>
-              <StyledLink to="/favorite" style={{ color: 'white' }}>
+              <NoUnderLinedLink to="/favorite" style={{ color: 'white' }}>
                 Favorite
-              </StyledLink>
+              </NoUnderLinedLink>
             </Button>
           </Container>
           <Container
@@ -65,7 +69,7 @@ export default React.memo(function HomePage() {
             <PrevNextButton
               setPageNumber={setPageNumber}
               pageNumber={pageNumber}
-              path="home"
+              path=""
             ></PrevNextButton>
           </Container>
         </Container>
