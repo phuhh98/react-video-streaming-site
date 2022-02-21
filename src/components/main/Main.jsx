@@ -7,6 +7,6 @@ const MainContainer = styled.main`
   maxwidth: '80%';
 `;
 
-export default function (props) {
+export default function Main(props) {
   return <MainContainer {...props}></MainContainer>;
 }
