@@ -4,10 +4,12 @@ import AppContext from './components/commons/contexts/AppContext';
 
 function App() {
   const [filmData, setFilmData] = useState([]);
+
+  let loginStatus = localStorage.getItem('loginStatus') === true ? true : false;
   const app = {
     filmData,
     setFilmData,
-    login: false,
+    loginStatus,
     likedShowIds: [],
     favoriteShowIds: [],
     genreList: [
