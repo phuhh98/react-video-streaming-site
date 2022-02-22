@@ -15,16 +15,19 @@ export const LogoContainer = styled.div`
   grid-row: 1/4;
   position: relative;
   &::before {
-    content: '123';
+    content: '';
     width: 100%;
     height: 100%;
     background-color: white;
     position: absolute;
     top: 0;
     left: 0;
-    visibility: hidden;
     opacity: 0.3;
     pointer-events: none;
+    visibility: visible;
+    cursor: pointer;
+
+    animation: flyout 0.3s ease forwards;
   }
   &:hover::before {
     visibility: visible;
@@ -32,13 +35,20 @@ export const LogoContainer = styled.div`
 
     animation: flyin 0.3s ease forwards;
   }
-
   @keyframes flyin {
     0% {
       left: -100%;
     }
     100% {
       left: 0;
+    }
+  }
+  @keyframes flyout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -100%;
     }
   }
 `;
