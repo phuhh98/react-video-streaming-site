@@ -7,7 +7,7 @@ export default function LoginStatus(props) {
   return (
     <>
       <Button color="info" outline>
-        <ButtonText>{loginStatus ? 'Log out' : 'Log in'}</ButtonText>
+        <ButtonText>{loginStatus === 'true' ? 'Log out' : 'Log in'}</ButtonText>
       </Button>
     </>
   );
