@@ -1,15 +1,78 @@
-import React from 'react';
-import FilmGrid from './subComponents/FilmGrid';
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
-export default function Genre(props) {
+import {
+  AdditionalText,
+  ErrorPrompt,
+  FormContainer,
+  LoginContainer,
+  LoginForm,
+  StyledButton,
+  StyledInput,
+} from './styledComponents/ContainerStyled';
+import { UnderLinedLink } from '../../utilWrapper/UtilWrapper';
+
+import {
+  comparePassword,
+  setCurrentUser,
+} from '../../commons/helperFuncs/helperFuncs';
+
+export default function Login(props) {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+
+  async function formSubmitHandler(event) {
+    event.preventDefault();
+    const users = JSON.parse(localStorage.getItem('users'));
+    const foundUser = users.find(
+      user =>
+        userName === user.username && comparePassword(password, user.password)
+    );
+    console.log(foundUser);
+    if (!foundUser) {
+      setError(true);
+    } else {
+      setError(false);
+      setCurrentUser(foundUser.username);
+      setRedirect(true);
+    }
+  }
+
   return (
     <>
-      <form>
-        <input type="text" name="username" />
-
-        <input type="password" name="password" />
-        <button type="submit">Submite</button>
-      </form>
+      <LoginContainer>
+        <FormContainer>
+          <LoginForm onSubmit={formSubmitHandler}>
+            <StyledInput
+              type="text"
+              name="username"
+              placeholder="Your username"
+              autoComplete="off"
+              onChange={e => setUserName(e.target.value)}
+            />
+            <StyledInput
+              type="password"
+              name="password"
+              placeholder="Your password"
+              autoComplete="off"
+              onChange={e => setPassword(e.target.value)}
+            />
+            <StyledButton type="submit">LOG IN</StyledButton>
+          </LoginForm>
+          <AdditionalText>
+            Not register?&nbsp;
+            <UnderLinedLink to="/signup" color="green" hover_color="green">
+              Create an account.
+            </UnderLinedLink>
+          </AdditionalText>
+          {error && (
+            <ErrorPrompt>User name or password is not correct</ErrorPrompt>
+          )}
+        </FormContainer>
+        {redirect === true && <Navigate to="/" />}
+      </LoginContainer>
     </>
   );
 }

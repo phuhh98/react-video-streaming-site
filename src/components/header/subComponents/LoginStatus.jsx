@@ -21,7 +21,6 @@ export default function LoginStatus(props) {
       setToLoginPage(true);
     }
   }
-  useEffect(() => {}, [status]);
 
   return (
     <>
