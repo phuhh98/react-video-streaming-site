@@ -15,6 +15,9 @@ export const CursorHover = styled.div`
 export const NoUnderLinedLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+  &:hover {
+    color: inherit;
+  }
 `;
 
 export const WhiteGrayLink = styled(NoUnderLinedLink)`

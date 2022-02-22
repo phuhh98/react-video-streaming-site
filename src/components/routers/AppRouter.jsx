@@ -7,6 +7,7 @@ import Contact from '../main/mainContents/Contact';
 import NotFound from '../main/mainContents/NotFound';
 import Genre from '../main/mainContents/Genre';
 import Index from '../main/mainContents/Index';
+import Login from '../main/mainContents/Login';
 
 export default function AppRouter() {
   return (
@@ -24,6 +25,7 @@ export default function AppRouter() {
             <Route path=":pageNumber" element={<Genre />}></Route>
           </Route>
         </Route>
+        <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
