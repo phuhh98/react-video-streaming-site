@@ -5,7 +5,10 @@ import AppContext from './components/commons/contexts/AppContext';
 function App() {
   const [filmData, setFilmData] = useState([]);
 
-  let loginStatus = localStorage.getItem('loginStatus') === true ? true : false;
+  let loginStatus =
+    JSON.parse(localStorage.getItem('loginStatus')).login === true
+      ? true
+      : false;
   const app = {
     filmData,
     setFilmData,

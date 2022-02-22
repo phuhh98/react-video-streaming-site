@@ -79,6 +79,7 @@ export const LoginContainer = styled.div`
   grid-column: 3/4;
   grid-row: 1/4;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;
