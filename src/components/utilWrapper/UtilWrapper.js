@@ -20,6 +20,6 @@ export const NoUnderLinedLink = styled(Link)`
 export const WhiteGrayLink = styled(NoUnderLinedLink)`
   color: white;
   &:hover {
-    color: #a0a0a0;
+    color: white;
   }
 `;

@@ -13,6 +13,7 @@ export const HeaderContainer = styled.header`
 export const LogoContainer = styled.div`
   grid-column: 1/2;
   grid-row: 1/4;
+
   position: relative;
   &::before {
     content: '';
@@ -22,11 +23,10 @@ export const LogoContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.3;
+    opacity: 0.25;
     pointer-events: none;
     visibility: visible;
     cursor: pointer;
-
     animation: flyout 0.3s ease forwards;
   }
   &:hover::before {
