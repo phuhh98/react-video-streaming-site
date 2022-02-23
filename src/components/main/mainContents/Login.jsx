@@ -14,6 +14,7 @@ import { UnderLinedLink } from '../../utilWrapper/UtilWrapper';
 
 import {
   comparePassword,
+  loadUsersList,
   updateCurrentUser,
 } from '../../commons/helperFuncs/helperFuncs';
 
@@ -25,7 +26,7 @@ export default function Login(props) {
 
   function formSubmitHandler(event) {
     event.preventDefault();
-    const users = JSON.parse(localStorage.getItem('users'));
+    const users = loadUsersList();
     const foundUser = users.find(
       user =>
         userName === user.username && comparePassword(password, user.password)
