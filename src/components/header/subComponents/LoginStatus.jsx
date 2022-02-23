@@ -30,7 +30,7 @@ export default function LoginStatus(props) {
 
   return (
     <>
-      {pathname !== '/login' && (
+      {pathname !== '/login' && pathname !== '/signup' && (
         <>
           {<DisplayedUserName>{loginStatus.currentUser}</DisplayedUserName>}
           <Button color="info" outline onClick={loginButtonHandler}>
