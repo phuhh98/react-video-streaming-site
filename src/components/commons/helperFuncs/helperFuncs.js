@@ -46,3 +46,9 @@ export const addNewUser = function (username, password) {
   users.push({ username: username, password: generatePassword(password) });
   localStorage.setItem('users', JSON.stringify(users));
 };
+
+export const loadLoginStatus = function () {
+  let temp = JSON.parse(localStorage.getItem('loginStatus'));
+  console.log('temp: ', temp);
+  return !!temp ? temp : {};
+};

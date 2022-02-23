@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import { loadLoginStatus } from '../../commons/helperFuncs/helperFuncs';
 import { ButtonText, DisplayedUserName } from '../styledComponents/TextStyle';
 
 export default function LoginStatus(props) {
-  const loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
+  const loginStatus = loadLoginStatus();
   const [redirect, setRedirect] = useState(false);
-  const [status, setStatus] = useState(loginStatus.status);
+  const [status, setStatus] = useState(!!loginStatus.status);
   const { pathname } = useLocation();
 
   function loginButtonHandler() {
@@ -32,7 +33,11 @@ export default function LoginStatus(props) {
     <>
       {pathname !== '/login' && pathname !== '/signup' && (
         <>
-          {<DisplayedUserName>{loginStatus.currentUser}</DisplayedUserName>}
+          {
+            <DisplayedUserName>
+              {!!loginStatus.currentUser ? loginStatus.currentUser : 'Guest'}
+            </DisplayedUserName>
+          }
           <Button color="info" outline onClick={loginButtonHandler}>
             <ButtonText>{status === true ? 'Log out' : 'Log in'}</ButtonText>
             {redirect && <Navigate to="/login" />}

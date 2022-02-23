@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import AppRouter from './components/routers/AppRouter';
 import AppContext from './components/commons/contexts/AppContext';
+import { loadLoginStatus } from './components/commons/helperFuncs/helperFuncs';
 
 function App() {
   const [filmData, setFilmData] = useState([]);
-
-  let loginStatus =
-    JSON.parse(localStorage.getItem('loginStatus')).login === true
-      ? true
-      : false;
+  console.log(!!loadLoginStatus().status);
+  let loginStatus = !!loadLoginStatus().status;
   const app = {
     filmData,
     setFilmData,
