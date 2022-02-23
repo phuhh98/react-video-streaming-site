@@ -37,6 +37,7 @@ export const LoginContainer = styled(MainContent)`
   align-items: center;
   height: 50vh;
 `;
+export const SignupContainer = styled(LoginContainer)``;
 
 export const FormContainer = styled.div`
   box-sizing: border-box;
@@ -47,6 +48,10 @@ export const FormContainer = styled.div`
   box-shadow: 0 0 15px 3px #a0a0a0;
 `;
 
+export const SignupFormContainer = styled(FormContainer)`
+  height: 700px;
+`;
+
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -55,6 +60,10 @@ export const LoginForm = styled.form`
   width: 30vw;
   height: 200px;
   padding: 0 5vw;
+`;
+
+export const SignupForm = styled(LoginForm)`
+  height: 265px;
 `;
 
 export const StyledInput = styled.input`

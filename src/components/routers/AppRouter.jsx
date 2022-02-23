@@ -8,7 +8,7 @@ import NotFound from '../main/mainContents/NotFound';
 import Genre from '../main/mainContents/Genre';
 import Index from '../main/mainContents/Index';
 import Login from '../main/mainContents/Login';
-
+import Signup from '../main/mainContents/Signup';
 export default function AppRouter() {
   return (
     <Routes>
@@ -26,6 +26,7 @@ export default function AppRouter() {
           </Route>
         </Route>
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
