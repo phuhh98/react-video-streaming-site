@@ -9,14 +9,14 @@ export function useFetchFilmData(
   setPageNumber,
   pathname,
   params,
-  filter = noFilter
+  filter = noFilter,
+  ItemPerPage = 20
 ) {
   //api paging
   const [queryPage, setQueryPage] = useState(0);
   const [reupdate, setReupdate] = useState(false);
   const [oldGenre, setOldGenre] = useState(params.genre);
   //item per view page
-  const ItemPerPage = 20;
 
   useEffect(() => {
     //current api query page
