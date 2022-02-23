@@ -29,9 +29,20 @@ export const comparePassword = function (_passwordString, hash) {
   return bcrypt.compareSync(_passwordString, hash);
 };
 
-export const updateCurrentUser = function (_username) {
+export const loadUsersList = function () {
+  let temp = JSON.parse(localStorage.getItem('users'));
+  return !temp ? [] : temp;
+};
+
+export const updateCurrentUser = function (username) {
   localStorage.setItem(
     'loginStatus',
-    JSON.stringify({ status: true, currentUser: _username })
+    JSON.stringify({ status: true, currentUser: username })
   );
+};
+
+export const addNewUser = function (username, password) {
+  let users = loadUsersList();
+  users.push({ username: username, password: generatePassword(password) });
+  localStorage.setItem('users', JSON.stringify(users));
 };
