@@ -13,7 +13,7 @@ export default function FilmList(props) {
             ? !!film.image.medium
               ? film.image.medium
               : film.image.original
-            : 'data:,',
+            : 'https://static.tvmaze.com/images/no-img/no-img-portrait-text.png',
           imgAlt: film.name,
           genres: film.genres,
           filmTitle: film.name,
