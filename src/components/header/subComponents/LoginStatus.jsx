@@ -5,7 +5,7 @@ import { ButtonText, DisplayedUserName } from '../styledComponents/TextStyle';
 
 export default function LoginStatus(props) {
   const loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
-  const [toLoginPage, setToLoginPage] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const [status, setStatus] = useState(loginStatus.status);
   const { pathname } = useLocation();
 
@@ -18,9 +18,15 @@ export default function LoginStatus(props) {
       setStatus(false);
     }
     if (status === false) {
-      setToLoginPage(true);
+      setRedirect(true);
+      setStatus(true);
     }
   }
+  useEffect(() => {
+    if (redirect) {
+      setRedirect(false);
+    }
+  });
 
   return (
     <>
@@ -29,7 +35,7 @@ export default function LoginStatus(props) {
           {<DisplayedUserName>{loginStatus.currentUser}</DisplayedUserName>}
           <Button color="info" outline onClick={loginButtonHandler}>
             <ButtonText>{status === true ? 'Log out' : 'Log in'}</ButtonText>
-            {toLoginPage === true && <Navigate to="/login" />}
+            {redirect && <Navigate to="/login" />}
           </Button>
         </>
       )}

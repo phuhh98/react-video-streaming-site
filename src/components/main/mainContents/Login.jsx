@@ -23,7 +23,7 @@ export default function Login(props) {
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
-  async function formSubmitHandler(event) {
+  function formSubmitHandler(event) {
     event.preventDefault();
     const users = JSON.parse(localStorage.getItem('users'));
     const foundUser = users.find(
@@ -71,7 +71,7 @@ export default function Login(props) {
             <ErrorPrompt>User name or password is not correct</ErrorPrompt>
           )}
         </FormContainer>
-        {redirect === true && <Navigate to="/" />}
+        {redirect === true && <Navigate to="/home" />}
       </LoginContainer>
     </>
   );

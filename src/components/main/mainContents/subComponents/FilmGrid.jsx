@@ -58,6 +58,7 @@ export default function FilmGrid(props) {
         </FilmMenuContainer>
 
         <FilmList filmList={pageData} />
+        {console.log('FilmGrid rendered')}
       </MainContent>
     </>
   );
