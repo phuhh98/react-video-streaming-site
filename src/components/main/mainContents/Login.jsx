@@ -14,7 +14,7 @@ import { UnderLinedLink } from '../../utilWrapper/UtilWrapper';
 
 import {
   comparePassword,
-  setCurrentUser,
+  updateCurrentUser,
 } from '../../commons/helperFuncs/helperFuncs';
 
 export default function Login(props) {
@@ -35,7 +35,7 @@ export default function Login(props) {
       setError(true);
     } else {
       setError(false);
-      setCurrentUser(foundUser.username);
+      updateCurrentUser(foundUser.username);
       setRedirect(true);
     }
   }

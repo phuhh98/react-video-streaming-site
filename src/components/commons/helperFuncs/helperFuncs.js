@@ -29,7 +29,7 @@ export const comparePassword = function (_passwordString, hash) {
   return bcrypt.compareSync(_passwordString, hash);
 };
 
-export const setCurrentUser = function (_username) {
+export const updateCurrentUser = function (_username) {
   localStorage.setItem(
     'loginStatus',
     JSON.stringify({ status: true, currentUser: _username })
