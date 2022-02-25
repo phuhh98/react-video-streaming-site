@@ -1,17 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Container } from "reactstrap";
 
 import AppContext from "../../../commons/contexts/AppContext";
 import FilmList from "../../../filmList/FilmList";
 import GenreDropDown from "../../../genreDropDown/GenreDropDown";
-import PrevNextButton from "../../../prevNextButtons/PrevNextButtons";
 
 import {
   FavLikeButton,
   FilmMenuContainer,
   MainContent,
-  PrevNextButtonContainer,
 } from "../styledComponents/ContainerStyled";
 
 import {
@@ -20,15 +18,9 @@ import {
 } from "../../../commons/helperFuncs/helperFuncs";
 
 export default function FilmGrid(props) {
-  const { filmData, setFilmData, genreList } = useContext(AppContext);
+  const { genreList } = useContext(AppContext);
   const [pageData, setPageData] = useState([]);
   const pathname = useLocation().pathname;
-  const params = useParams();
-  const [pageNumber, setPageNumber] = useState(
-    Number.isInteger(parseInt(params.pageNumber))
-      ? parseInt(params.pageNumber)
-      : 0
-  );
 
   useEffect(() => {
     const userList = loadUsersList();
