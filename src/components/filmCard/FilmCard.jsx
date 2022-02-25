@@ -40,7 +40,7 @@ export default function FilmCard(props) {
     if (!!favorite && favorite.some(item => item.id === data.id)) {
       setFavorite(true);
     }
-  }, [data.id]);
+  }, []);
 
   // Onclick favorite button
   function onClickFavorite(e) {
