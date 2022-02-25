@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Container,
@@ -12,13 +12,50 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import { CursorHover } from "../utilWrapper/UtilWrapper";
+import {
+  loadLoginStatus,
+  loadUsersList,
+  updateUserList,
+} from "../commons/helperFuncs/helperFuncs";
 
 export default function FilmCard(props) {
   let [favorite, setFavorite] = useState(false);
-  let [like, setLike] = useState(false);
+  let [liked, setliked] = useState(false);
   const { data } = props;
+  useEffect(() => {
+    const userList = loadUsersList();
+    const currentUsername = loadLoginStatus().currentUser;
+    const currentUser = userList.find(
+      user => user.username === currentUsername
+    );
+    currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
+    currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
+    if (liked) {
+      currentUser.liked.push({
+        id: data.id,
+        href: data.href,
+      });
+    } else {
+      const itemIndex = currentUser.liked.findIndex(
+        likedItem => likedItem.id === data.id
+      );
+      currentUser.liked.splice(itemIndex, 1);
+    }
 
-  console.log(data);
+    if (favorite) {
+      currentUser.favorite.push({
+        id: data.id,
+        href: data.href,
+      });
+    } else {
+      const itemIndex = currentUser.favorite.findIndex(
+        favoriteItem => favoriteItem.id === data.id
+      );
+      currentUser.favorite.splice(itemIndex, 1);
+    }
+    // Update userList in local storage.
+    updateUserList(userList);
+  }, [favorite, liked]);
   return (
     <>
       <Card style={{ marginBottom: "20px", height: "550px" }}>
@@ -75,10 +112,10 @@ export default function FilmCard(props) {
                 <FontAwesomeIcon
                   icon={faThumbsUp}
                   className="fa-xl"
-                  style={like ? { color: "turquoise" } : { color: "gray" }}
-                  onClick={() => setLike(!like)}
-                  id={`like-${data.id}`}
-                  title="like button"
+                  style={liked ? { color: "turquoise" } : { color: "gray" }}
+                  onClick={() => setliked(!liked)}
+                  id={`liked-${data.id}`}
+                  title="liked button"
                 />
               </CursorHover>
             </div>

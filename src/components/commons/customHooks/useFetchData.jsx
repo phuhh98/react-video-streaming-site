@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useFetchFilmData(
   filmData,
@@ -31,8 +31,6 @@ export function useFetchFilmData(
       setOldGenre(params.genre);
     }
 
-    console.log('queryPage: ', queryPage);
-
     //if current item list is enough => trigger render
     if ((pageNumber + 1) * ItemPerPage <= tempFilmData.length && !!pageNumber) {
       const startItemIndex = 0 + ItemPerPage * pageNumber;
@@ -50,7 +48,6 @@ export function useFetchFilmData(
           (!params.pageNumber || parseInt(params.pageNumber) === 0) &&
           queryPage === 0
         ) {
-          console.log('reset temp');
           tempFilmData = [];
           tempFilmData.push(...filteredFilms);
         } else {
@@ -68,7 +65,6 @@ export function useFetchFilmData(
             acc.push(filteredItem);
             return acc;
           }, []);
-          console.log(filteredFilms);
           tempFilmData.push(...filteredFilms);
         }
         setFilmData(tempFilmData);
@@ -96,7 +92,7 @@ export function useFetchFilmData(
 
   //reset page to zero on navigate to home
   useEffect(() => {
-    if (pathname === '/home') {
+    if (pathname === "/home") {
       setPageNumber(0);
     }
   }, [pathname]);

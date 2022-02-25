@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import AppRouter from './components/routers/AppRouter';
-import AppContext from './components/commons/contexts/AppContext';
-import { loadLoginStatus } from './components/commons/helperFuncs/helperFuncs';
+import { useState } from "react";
+import AppRouter from "./components/routers/AppRouter";
+import AppContext from "./components/commons/contexts/AppContext";
+import { loadLoginStatus } from "./components/commons/helperFuncs/helperFuncs";
 
 function App() {
   const [filmData, setFilmData] = useState([]);
-  console.log(!!loadLoginStatus().status);
   let loginStatus = !!loadLoginStatus().status;
   const app = {
     filmData,
@@ -14,16 +13,16 @@ function App() {
     likedShowIds: [],
     favoriteShowIds: [],
     genreList: [
-      'adventure',
-      'comedy',
-      'action',
-      'horror',
-      'thriller',
-      'science-fiction',
-      'crime',
-      'drama',
-      'mystery',
-      'anime',
+      "adventure",
+      "comedy",
+      "action",
+      "horror",
+      "thriller",
+      "science-fiction",
+      "crime",
+      "drama",
+      "mystery",
+      "anime",
     ].sort((a, b) => (a > b ? 1 : -1)),
   };
   return (
