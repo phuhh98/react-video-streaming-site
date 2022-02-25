@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { Row, Col } from 'reactstrap';
+import { Row, Col } from "reactstrap";
 
-import FilmCard from '../filmCard/FilmCard';
+import FilmCard from "../filmCard/FilmCard";
 
 export default function FilmList(props) {
   return (
@@ -13,12 +13,13 @@ export default function FilmList(props) {
             ? !!film.image.medium
               ? film.image.medium
               : film.image.original
-            : 'https://static.tvmaze.com/images/no-img/no-img-portrait-text.png',
+            : "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png",
           imgAlt: film.name,
           genres: film.genres,
           filmTitle: film.name,
-          rating: !!film.rating.average ? film.rating.average : 'N/A',
+          rating: !!film.rating.average ? film.rating.average : "N/A",
           id: film.id,
+          href: film._links.self.href,
         };
         return (
           <Col className="bg-light" key={film.id}>
