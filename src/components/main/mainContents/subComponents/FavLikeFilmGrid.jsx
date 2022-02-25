@@ -41,12 +41,16 @@ export default function FilmGrid(props) {
     }
     let temp = [];
     if (pathname === "/favorite") {
-      currentUser.favorite.forEach(item => temp.push(item.href));
+      !!currentUser.favorite &&
+        currentUser.favorite.forEach(item => temp.push(item.href));
     }
     if (pathname === "/liked") {
-      currentUser.liked.forEach(item => temp.push(item.href));
+      !!currentUser.liked &&
+        currentUser.liked.forEach(item => temp.push(item.href));
     }
-
+    if (temp.length === 0) {
+      return;
+    }
     temp.forEach(href => {
       fetch(href)
         .then(res => res.json())
@@ -81,7 +85,30 @@ export default function FilmGrid(props) {
           </PrevNextButtonContainer> */}
         </FilmMenuContainer>
 
-        <FilmList filmList={pageData} />
+        {pageData.length > 0 && <FilmList filmList={pageData} />}
+        {pageData.length <= 0 && (
+          <section>
+            <h1>There nothing here yet</h1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </section>
+        )}
       </MainContent>
     </>
   );
