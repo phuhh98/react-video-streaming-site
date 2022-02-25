@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: grid;
@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
   box-shadow: 0 3px 5px 5px #d3d3d3;
   margin: 0 auto;
   color: #fff;
+  width: 100vw;
 `;
 
 export const LogoContainer = styled.div`
@@ -16,7 +17,7 @@ export const LogoContainer = styled.div`
 
   position: relative;
   &::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: white;
