@@ -73,12 +73,12 @@ export default function FilmGrid(props) {
             <FavLikeButton to="/favorite">Favorite</FavLikeButton>
           </Container>
 
-          <PrevNextButtonContainer>
+          {/* <PrevNextButtonContainer>
             <PrevNextButton
               setPageNumber={setPageNumber}
               pageNumber={pageNumber}
             ></PrevNextButton>
-          </PrevNextButtonContainer>
+          </PrevNextButtonContainer> */}
         </FilmMenuContainer>
 
         <FilmList filmList={pageData} />
