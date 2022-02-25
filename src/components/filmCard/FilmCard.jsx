@@ -22,40 +22,88 @@ export default function FilmCard(props) {
   let [favorite, setFavorite] = useState(false);
   let [liked, setliked] = useState(false);
   const { data } = props;
+
+  // On first render, check the favorite and like button if this film is in liked or favorite array
   useEffect(() => {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
       user => user.username === currentUsername
     );
-    currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
+    if (!currentUser) {
+      return;
+    }
+    const { liked, favorite } = currentUser;
+    if (!!liked && liked.some(item => item.id === data.id)) {
+      setliked(true);
+    }
+    if (!!favorite && favorite.some(item => item.id === data.id)) {
+      setFavorite(true);
+    }
+  }, []);
+
+  // Onclick favorite button
+  function onClickFavorite(e) {
+    console.log(favorite);
+    const userList = loadUsersList();
+    const currentUsername = loadLoginStatus().currentUser;
+    const currentUser = userList.find(
+      user => user.username === currentUsername
+    );
+    if (!currentUser) {
+      alert("Login to save to your Favorites");
+      return;
+    }
     currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
-    if (liked) {
-      currentUser.liked.push({
-        id: data.id,
-        href: data.href,
-      });
+    if (!favorite) {
+      if (currentUser.favorite.some(item => item.id === data.id)) {
+      } else {
+        currentUser.favorite.push({
+          id: data.id,
+          href: data.href,
+        });
+      }
+    } else {
+      const itemIndex = currentUser.favorite.findIndex(
+        item => item.id === data.id
+      );
+      currentUser.favorite.splice(itemIndex, 1);
+    }
+    setFavorite(!favorite);
+    updateUserList(userList);
+  }
+
+  function onClickLiked(e) {
+    const userList = loadUsersList();
+    const currentUsername = loadLoginStatus().currentUser;
+    const currentUser = userList.find(
+      user => user.username === currentUsername
+    );
+    if (!currentUser) {
+      alert("Login to save to your Liked");
+      return;
+    }
+    currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
+
+    if (!liked) {
+      if (currentUser.liked.some(item => item.id === data.id)) {
+      } else {
+        currentUser.liked.push({
+          id: data.id,
+          href: data.href,
+        });
+      }
     } else {
       const itemIndex = currentUser.liked.findIndex(
-        likedItem => likedItem.id === data.id
+        item => item.id === data.id
       );
       currentUser.liked.splice(itemIndex, 1);
     }
 
-    if (favorite) {
-      currentUser.favorite.push({
-        id: data.id,
-        href: data.href,
-      });
-    } else {
-      const itemIndex = currentUser.favorite.findIndex(
-        favoriteItem => favoriteItem.id === data.id
-      );
-      currentUser.favorite.splice(itemIndex, 1);
-    }
-    // Update userList in local storage.
+    setliked(!liked);
     updateUserList(userList);
-  }, [favorite, liked]);
+  }
+
   return (
     <>
       <Card style={{ marginBottom: "20px", height: "550px" }}>
@@ -102,7 +150,7 @@ export default function FilmCard(props) {
                   icon={faHeart}
                   className="fa-xl"
                   style={favorite ? { color: "red" } : { color: "gray" }}
-                  onClick={() => setFavorite(!favorite)}
+                  onClick={onClickFavorite}
                   id={`fav-${data.id}`}
                   title="favorite button"
                 />
@@ -113,7 +161,7 @@ export default function FilmCard(props) {
                   icon={faThumbsUp}
                   className="fa-xl"
                   style={liked ? { color: "turquoise" } : { color: "gray" }}
-                  onClick={() => setliked(!liked)}
+                  onClick={onClickLiked}
                   id={`liked-${data.id}`}
                   title="liked button"
                 />
