@@ -1,14 +1,16 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
-import CommonLayout from '../layouts/CommonLayout';
-import Homepage from '../main/mainContents/Homepage';
-import About from '../main/mainContents/About';
-import Contact from '../main/mainContents/Contact';
-import NotFound from '../main/mainContents/NotFound';
-import Genre from '../main/mainContents/Genre';
-import Index from '../main/mainContents/Index';
-import Login from '../main/mainContents/Login';
-import Signup from '../main/mainContents/Signup';
+import CommonLayout from "../layouts/CommonLayout";
+import Homepage from "../main/mainContents/Homepage";
+import About from "../main/mainContents/About";
+import Contact from "../main/mainContents/Contact";
+import NotFound from "../main/mainContents/NotFound";
+import Genre from "../main/mainContents/Genre";
+import Index from "../main/mainContents/Index";
+import Login from "../main/mainContents/Login";
+import Signup from "../main/mainContents/Signup";
+import Liked from "../main/mainContents/Liked";
+import Favorite from "../main/mainContents/Favorite";
 export default function AppRouter() {
   return (
     <Routes>
@@ -27,6 +29,8 @@ export default function AppRouter() {
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="liked" element={<Liked />} />
+        <Route path="favorite" element={<Favorite />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
