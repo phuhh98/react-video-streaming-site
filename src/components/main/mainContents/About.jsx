@@ -10,6 +10,15 @@ export default function About() {
         <h3>What is it?</h3>
         <p>R&amp;D project to learn React - Front-end JavaScript library</p>
         <br />
+        <h3>Used libraries</h3>
+        <div>
+          <ul>
+            <li>React</li>
+            <li>StyledComponent</li>
+            <li>Reactstrap</li>
+          </ul>
+        </div>
+        <br />
         <h3>Project expectations</h3>
         <p>
           <ul>
