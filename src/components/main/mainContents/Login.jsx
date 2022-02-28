@@ -42,6 +42,8 @@ export default function Login(props) {
 
   return (
     <>
+      <br />
+      <br />
       <LoginContainer>
         <FormContainer>
           <LoginForm onSubmit={formSubmitHandler}>
@@ -73,6 +75,9 @@ export default function Login(props) {
         </FormContainer>
         {redirect === true && <Navigate to="/home" />}
       </LoginContainer>
+
+      <br />
+      <br />
     </>
   );
 }

@@ -51,6 +51,8 @@ export default function Login(props) {
 
   return (
     <>
+      <br />
+      <br />
       <SignupContainer>
         <SignupFormContainer>
           <SignupForm onSubmit={formSubmitHandler}>
@@ -88,6 +90,8 @@ export default function Login(props) {
         </SignupFormContainer>
         {redirect === true && <Navigate to="/home" />}
       </SignupContainer>
+      <br />
+      <br />
     </>
   );
 }
