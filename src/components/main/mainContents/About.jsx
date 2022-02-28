@@ -34,11 +34,6 @@ export default function About() {
         <h3>Author</h3>
         <p>Hoai Phu Huynh, EPAM System Vietnam</p>
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </MainContent>
     </>
   );
