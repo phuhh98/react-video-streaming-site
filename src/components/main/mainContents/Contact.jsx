@@ -45,7 +45,7 @@ export default function Contact() {
             norefferer
           >
             <CursorHover>
-              <img src={facebookIcon} height="45" />
+              <img src={facebookIcon} height="45" alt="facebook icon" />
             </CursorHover>
           </StyledALink>
           <StyledALink
@@ -56,6 +56,7 @@ export default function Contact() {
             <CursorHover>
               <img
                 src={linkedinIcon}
+                alt="linkedin icon"
                 height="50"
                 style={{ marginBottom: "-5px" }}
               />
