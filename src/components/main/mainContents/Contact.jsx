@@ -8,7 +8,7 @@ import { CursorHover } from "../../utilWrapper/UtilWrapper";
 
 import facebookIcon from "../../../images/facebook-f-brands.svg";
 import linkedinIcon from "../../../images/linkedin-in-brands.svg";
-export default function () {
+export default function Contact() {
   return (
     <>
       <MainContent>
