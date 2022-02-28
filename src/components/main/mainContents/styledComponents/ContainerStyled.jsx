@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container, Button } from 'reactstrap';
-import { NoUnderLinedLink } from '../../../utilWrapper/UtilWrapper';
+import { Container, Button } from "reactstrap";
+import { NoUnderLinedLink } from "../../../utilWrapper/UtilWrapper";
 
 export const MainContent = styled(Container)`
   margin-top: 20px;
@@ -102,4 +102,25 @@ export const ErrorPrompt = styled.p`
   text-align: center;
   color: red;
   font-weight: 400;
+`;
+
+export const StyledALink = styled.a`
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: green;
+  }
+`;
+
+export const SocialMediaContacts = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 150px;
+`;
+
+export const ContactImageLink = styled.div`
+  height: 100px;
 `;
