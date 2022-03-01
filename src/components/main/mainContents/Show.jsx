@@ -25,7 +25,9 @@ export default function Show() {
   let [favorite, setFavorite] = useState(false);
   let [liked, setliked] = useState(false);
   let [film, setFilm] = useState(null);
-  const { id } = useParams();
+  let { id } = useParams();
+  //parse id to number to avoid conflict of data saved in localStorage
+  id = parseInt(id);
 
   // Load film according to film id from params
   useEffect(() => {
@@ -185,9 +187,9 @@ export default function Show() {
                       key={cast.character.name}
                       cast={{
                         image: !!cast.person.image
-                          ? !!cast.person.image.original
-                            ? cast.person.image.original
-                            : cast.person.image.medium
+                          ? !!cast.person.image.medium
+                            ? cast.person.image.medium
+                            : cast.person.image.original
                           : "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png",
                         name: cast.person.name,
                         role: cast.character.name,
