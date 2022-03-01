@@ -18,10 +18,9 @@ import {
   updateUserList,
 } from "../commons/helperFuncs/helperFuncs";
 
-export default function FilmCard(props) {
+export default function FilmCard({ film }) {
   let [favorite, setFavorite] = useState(false);
   let [liked, setliked] = useState(false);
-  const { data } = props;
 
   // On first render, check the favorite and like button if this film is in liked or favorite array
   useEffect(() => {
@@ -34,10 +33,10 @@ export default function FilmCard(props) {
       return;
     }
     const { liked, favorite } = currentUser;
-    if (!!liked && liked.some(item => item.id === data.id)) {
+    if (!!liked && liked.some(item => item.id === film.id)) {
       setliked(true);
     }
-    if (!!favorite && favorite.some(item => item.id === data.id)) {
+    if (!!favorite && favorite.some(item => item.id === film.id)) {
       setFavorite(true);
     }
   }, []);
@@ -56,16 +55,16 @@ export default function FilmCard(props) {
     }
     currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
     if (!favorite) {
-      if (currentUser.favorite.some(item => item.id === data.id)) {
+      if (currentUser.favorite.some(item => item.id === film.id)) {
       } else {
         currentUser.favorite.push({
-          id: data.id,
-          href: data.href,
+          id: film.id,
+          href: film.href,
         });
       }
     } else {
       const itemIndex = currentUser.favorite.findIndex(
-        item => item.id === data.id
+        item => item.id === film.id
       );
       currentUser.favorite.splice(itemIndex, 1);
     }
@@ -86,16 +85,16 @@ export default function FilmCard(props) {
     currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
 
     if (!liked) {
-      if (currentUser.liked.some(item => item.id === data.id)) {
+      if (currentUser.liked.some(item => item.id === film.id)) {
       } else {
         currentUser.liked.push({
-          id: data.id,
-          href: data.href,
+          id: film.id,
+          href: film.href,
         });
       }
     } else {
       const itemIndex = currentUser.liked.findIndex(
-        item => item.id === data.id
+        item => item.id === film.id
       );
       currentUser.liked.splice(itemIndex, 1);
     }
@@ -107,9 +106,9 @@ export default function FilmCard(props) {
   return (
     <>
       <Card style={{ marginBottom: "20px", height: "550px" }}>
-        <CardImg alt={data.imgAlt} src={data.imgSrc} top height="400px" />
+        <CardImg alt={film.imgAlt} src={film.imgSrc} top height="400px" />
         <CardBody style={{ position: "relative" }}>
-          <CardTitle tag="h5">{data.filmTitle}</CardTitle>
+          <CardTitle tag="h5">{film.filmTitle}</CardTitle>
           <CardSubtitle
             className="mb-2 text-muted"
             tag="h6"
@@ -121,7 +120,7 @@ export default function FilmCard(props) {
               WebkitBoxOrient: "vertical",
             }}
           >
-            {data.genres.join(" • ")}
+            {film.genres.join(" • ")}
           </CardSubtitle>
           <Container
             style={{
@@ -134,7 +133,7 @@ export default function FilmCard(props) {
             }}
           >
             <Button disabled style={{ padding: "5px 10px" }}>
-              Rate: {data.rating}&nbsp;
+              Rate: {film.rating}&nbsp;
               <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
             </Button>
             <div
@@ -151,7 +150,7 @@ export default function FilmCard(props) {
                   className="fa-xl"
                   style={favorite ? { color: "red" } : { color: "gray" }}
                   onClick={onClickFavorite}
-                  id={`fav-${data.id}`}
+                  id={`fav-${film.id}`}
                   title="favorite button"
                 />
               </CursorHover>
@@ -162,7 +161,7 @@ export default function FilmCard(props) {
                   className="fa-xl"
                   style={liked ? { color: "turquoise" } : { color: "gray" }}
                   onClick={onClickLiked}
-                  id={`liked-${data.id}`}
+                  id={`liked-${film.id}`}
                   title="liked button"
                 />
               </CursorHover>

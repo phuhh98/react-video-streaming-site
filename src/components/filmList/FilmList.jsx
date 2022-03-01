@@ -23,7 +23,7 @@ export default function FilmList(props) {
         };
         return (
           <Col className="bg-light" key={film.id}>
-            <FilmCard data={filmData} />
+            <FilmCard film={filmData} />
           </Col>
         );
       })}
