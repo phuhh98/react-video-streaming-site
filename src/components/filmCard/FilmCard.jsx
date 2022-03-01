@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { StyledLink } from "./styledComponent/styledContainer";
+import { Enlarge, StyledLink } from "./styledComponent/styledContainer";
 
 import {
   Container,
@@ -107,11 +107,16 @@ export default function FilmCard({ film }) {
 
   return (
     <>
-      <StyledLink to={`/show/${film.id}`}>
+      <Enlarge>
         <Card style={{ marginBottom: "20px", height: "550px" }}>
-          <CardImg alt={film.imgAlt} src={film.imgSrc} top height="400px" />
+          <StyledLink to={`/show/${film.id}`}>
+            <CardImg alt={film.imgAlt} src={film.imgSrc} top height="400px" />
+          </StyledLink>
+
           <CardBody style={{ position: "relative" }}>
-            <CardTitle tag="h5">{film.filmTitle}</CardTitle>
+            <StyledLink to={`/show/${film.id}`}>
+              <CardTitle tag="h5">{film.filmTitle}</CardTitle>
+            </StyledLink>
             <CardSubtitle
               className="mb-2 text-muted"
               tag="h6"
@@ -172,7 +177,7 @@ export default function FilmCard({ film }) {
             </Container>
           </CardBody>
         </Card>
-      </StyledLink>
+      </Enlarge>
     </>
   );
 }
