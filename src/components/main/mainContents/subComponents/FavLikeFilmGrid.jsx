@@ -77,29 +77,41 @@ export default function FilmGrid(props) {
           </PrevNextButtonContainer> */}
         </FilmMenuContainer>
 
-        {pageData.length > 0 && <FilmList filmList={pageData} />}
+        {pageData.length > 0 && (
+          <>
+            <h2>
+              {pathname === "/liked" ? "Liked movies" : "Favorite movies"}
+            </h2>
+            <FilmList filmList={pageData} />
+          </>
+        )}
         {pageData.length <= 0 && (
-          <section>
-            <h1>There nothing here yet</h1>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-          </section>
+          <>
+            <h2>
+              {pathname === "/liked" ? "Liked movies" : "Favorite movies"}
+            </h2>
+            <section>
+              <br />
+              <h3>There is nothing here yet</h3>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+            </section>
+          </>
         )}
       </MainContent>
     </>
