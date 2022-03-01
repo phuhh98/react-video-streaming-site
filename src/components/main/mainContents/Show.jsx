@@ -36,7 +36,7 @@ export default function Show() {
       .then(data => {
         setFilm(data);
       });
-  }, []);
+  }, [id]);
 
   // On first render, check the favorite and like button if this film is in liked or favorite array
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Show() {
     if (!!favorite && favorite.some(item => item.id === id)) {
       setFavorite(true);
     }
-  }, []);
+  }, [id]);
 
   // Onclick favorite button
   function onClickFavorite(e) {
