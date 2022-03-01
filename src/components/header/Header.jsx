@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 
 import {
   LoginContainer,
   HeaderContainer,
   LogoContainer,
   NavigationContainer,
-} from './styledComponents/ContainerStyle';
-import { ImageContainer } from '../utilWrapper/UtilWrapper';
-import logo from '../../images/logo.png';
-import { HeaderTitle } from './styledComponents/TextStyle';
-import { TitleContainer } from './styledComponents/ContainerStyle';
+} from "./styledComponents/ContainerStyle";
+import { ImageContainer } from "../utilWrapper/UtilWrapper";
+import logo from "../../images/logo.png";
+import { HeaderTitle } from "./styledComponents/TextStyle";
+import { TitleContainer } from "./styledComponents/ContainerStyle";
 
-import NavLinks from './subComponents/NavLinks';
-import LoginStatus from './subComponents/LoginStatus';
-import { Link } from 'react-router-dom';
+import NavLinks from "./subComponents/NavLinks";
+import LoginStatus from "./subComponents/LoginStatus";
+import { Link } from "react-router-dom";
 
 export default function Header(props) {
   return (
     <HeaderContainer>
       <LogoContainer>
         <Link to="/home">
-          <ImageContainer src={logo}></ImageContainer>
+          <ImageContainer src={logo} alt="phuflix icon"></ImageContainer>
         </Link>
       </LogoContainer>
       <NavigationContainer>

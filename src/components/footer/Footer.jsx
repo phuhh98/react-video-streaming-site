@@ -17,7 +17,7 @@ export default function Footer(props) {
         <FooterContent>
           <LogoContainer>
             <a href="https://www.epam.com/" rel="noreferrer" target="_blank">
-              <ImageContainer src={epamLogo}></ImageContainer>
+              <ImageContainer src={epamLogo} alt="epam logo"></ImageContainer>
             </a>
           </LogoContainer>
           <Contact>
