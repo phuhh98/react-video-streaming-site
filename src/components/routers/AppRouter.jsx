@@ -11,6 +11,8 @@ import Login from "../main/mainContents/Login";
 import Signup from "../main/mainContents/Signup";
 import Liked from "../main/mainContents/Liked";
 import Favorite from "../main/mainContents/Favorite";
+import Show from "../main/mainContents/Show";
+
 export default function AppRouter() {
   return (
     <Routes>
@@ -31,6 +33,7 @@ export default function AppRouter() {
         <Route path="signup" element={<Signup />} />
         <Route path="liked" element={<Liked />} />
         <Route path="favorite" element={<Favorite />} />
+        <Route path="show/:id" element={<Show />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

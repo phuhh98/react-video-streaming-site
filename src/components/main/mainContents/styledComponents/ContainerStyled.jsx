@@ -124,3 +124,70 @@ export const SocialMediaContacts = styled.div`
 export const ContactImageLink = styled.div`
   height: 100px;
 `;
+
+export const ShowDescriptionContainer = styled.div`
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-teplate-rows: auto auto auto;
+
+  margin: 20px auto;
+`;
+export const FilmImage = styled.div`
+  grid-column: 1/2;
+  grid-row: 1/2;
+  background-color: #e9e9e9;
+`;
+export const ImageContainer = styled.img`
+  //   width: 100%;
+  height: 100%;
+`;
+
+export const Description = styled.div`
+  grid-column: 2/3;
+  grid-row: 1/3;
+  margin-left: 30px;
+  & > * {
+    margin-bottom: 15px;
+  }
+`;
+export const Detail = styled.div`
+  font-size: 1.2rem;
+  font-weight: 400;
+`;
+export const Casts = styled.div`
+  grid-column: 1/3;
+  grid-row: 3/4;
+  margin: 30px 0;
+`;
+
+export const CastList = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 20px 10px;
+`;
+
+export const FavLikeGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10px auto;
+`;
+
+export const CastCardContainer = styled.div`
+  width: 300px;
+  height: 470px;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+  & > *:nth-child(2) {
+    padding: 8px 15px;
+  }
+`;
+
+export const Enlarge = styled.div`
+  &:hover > :first-child {
+    transform: scale(1.05);
+    transition: width, height 0.3s ease-in-out 2s;
+    z-index: 1;
+  }
+`;
