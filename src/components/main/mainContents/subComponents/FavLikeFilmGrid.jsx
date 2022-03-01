@@ -68,7 +68,6 @@ export default function FilmGrid(props) {
             <FavLikeButton to="/liked">Liked</FavLikeButton>
             <FavLikeButton to="/favorite">Favorite</FavLikeButton>
           </Container>
-
           {/* <PrevNextButtonContainer>
             <PrevNextButton
               setPageNumber={setPageNumber}
