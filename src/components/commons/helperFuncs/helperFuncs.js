@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs";
+import bcrypt from 'bcryptjs';
 
 export const firstLetterUpperCase = function (_string) {
   return _string
@@ -6,7 +6,7 @@ export const firstLetterUpperCase = function (_string) {
     .toLowerCase()
     .split(/[ -_]/)
     .map(word => word.slice(0, 1).toUpperCase() + word.slice(1))
-    .join("-");
+    .join('-');
 };
 
 export const genreFilter = function (data, { genre }) {
@@ -30,16 +30,16 @@ export const comparePassword = function (_passwordString, hash) {
 };
 
 export const loadUsersList = function () {
-  let temp = JSON.parse(localStorage.getItem("users"));
+  let temp = JSON.parse(localStorage.getItem('users'));
   return !temp ? [] : temp;
 };
 export const updateUserList = function (userList) {
-  localStorage.setItem("users", JSON.stringify(userList));
+  localStorage.setItem('users', JSON.stringify(userList));
 };
 
 export const updateCurrentUser = function (username) {
   localStorage.setItem(
-    "loginStatus",
+    'loginStatus',
     JSON.stringify({ status: true, currentUser: username })
   );
 };
@@ -47,10 +47,15 @@ export const updateCurrentUser = function (username) {
 export const addNewUser = function (username, password) {
   let users = loadUsersList();
   users.push({ username: username, password: generatePassword(password) });
-  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem('users', JSON.stringify(users));
 };
 
 export const loadLoginStatus = function () {
-  let temp = JSON.parse(localStorage.getItem("loginStatus"));
+  let temp = JSON.parse(localStorage.getItem('loginStatus'));
   return !!temp ? temp : {};
+};
+
+export const sortAToZ = function (array) {
+  let tempArr = array.slice();
+  return tempArr.sort((a, b) => (a > b ? 1 : -1));
 };
