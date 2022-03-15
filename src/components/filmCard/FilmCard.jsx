@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { Enlarge, StyledLink } from "./styledComponent/styledContainer";
+import { Enlarge, StyledLink } from './styledComponent/styledContainer';
 
 import {
   Container,
@@ -10,15 +10,17 @@ import {
   CardSubtitle,
   CardImg,
   Button,
-} from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import { CursorHover } from "../utilWrapper/UtilWrapper";
+} from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
+import { CursorHover } from '../utilWrapper/UtilWrapper';
 import {
   loadLoginStatus,
   loadUsersList,
   updateUserList,
-} from "../commons/helperFuncs/helperFuncs";
+} from '../commons/helperFuncs/helperFuncs';
+
+import { alertLoginFav, alertLoginLike } from '../../constant/strings';
 
 export default function FilmCard({ film }) {
   let [favorite, setFavorite] = useState(false);
@@ -52,7 +54,7 @@ export default function FilmCard({ film }) {
       user => user.username === currentUsername
     );
     if (!currentUser) {
-      alert("Login to save to your Favorites");
+      alert(alertLoginFav);
       return;
     }
     currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
@@ -81,7 +83,7 @@ export default function FilmCard({ film }) {
       user => user.username === currentUsername
     );
     if (!currentUser) {
-      alert("Login to save to your Liked");
+      alert(alertLoginLike);
       return;
     }
     currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
@@ -108,12 +110,12 @@ export default function FilmCard({ film }) {
   return (
     <>
       <Enlarge>
-        <Card style={{ marginBottom: "20px", height: "550px" }}>
+        <Card style={{ marginBottom: '20px', height: '550px' }}>
           <StyledLink to={`/show/${film.id}`}>
             <CardImg alt={film.imgAlt} src={film.imgSrc} top height="400px" />
           </StyledLink>
 
-          <CardBody style={{ position: "relative" }}>
+          <CardBody style={{ position: 'relative' }}>
             <StyledLink to={`/show/${film.id}`}>
               <CardTitle tag="h5">{film.filmTitle}</CardTitle>
             </StyledLink>
@@ -121,42 +123,42 @@ export default function FilmCard({ film }) {
               className="mb-2 text-muted"
               tag="h6"
               style={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: "2",
-                WebkitBoxOrient: "vertical",
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                WebkitLineClamp: '2',
+                WebkitBoxOrient: 'vertical',
               }}
             >
-              {film.genres.join(" • ")}
+              {film.genres.join(' • ')}
             </CardSubtitle>
             <Container
               style={{
-                padding: "0",
-                width: "87%",
-                display: "flex",
-                justifyContent: "space-between",
-                position: "absolute",
-                bottom: "0.7rem",
+                padding: '0',
+                width: '87%',
+                display: 'flex',
+                justifyContent: 'space-between',
+                position: 'absolute',
+                bottom: '0.7rem',
               }}
             >
-              <Button disabled style={{ padding: "5px 10px" }}>
+              <Button disabled style={{ padding: '5px 10px' }}>
                 Rate: {film.rating}&nbsp;
-                <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
+                <FontAwesomeIcon icon={faStar} style={{ color: 'yellow' }} />
               </Button>
               <div
                 style={{
-                  width: "30%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  width: '30%',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <CursorHover>
                   <FontAwesomeIcon
                     icon={faHeart}
                     className="fa-xl"
-                    style={favorite ? { color: "red" } : { color: "gray" }}
+                    style={favorite ? { color: 'red' } : { color: 'gray' }}
                     onClick={onClickFavorite}
                     id={`fav-${film.id}`}
                     title="favorite button"
@@ -167,7 +169,7 @@ export default function FilmCard({ film }) {
                   <FontAwesomeIcon
                     icon={faThumbsUp}
                     className="fa-xl"
-                    style={liked ? { color: "turquoise" } : { color: "gray" }}
+                    style={liked ? { color: 'turquoise' } : { color: 'gray' }}
                     onClick={onClickLiked}
                     id={`liked-${film.id}`}
                     title="liked button"
