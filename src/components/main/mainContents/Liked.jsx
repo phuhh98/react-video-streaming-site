@@ -1,6 +1,6 @@
-import React from "react";
-import FavLikeFilmGrid from "./subComponents/FavLikeFilmGrid";
+import React from 'react';
+import FavLikeFilmGrid from './subComponents/FavLikeFilmGrid';
 
-export default function Liked(props) {
+export default function Liked() {
   return <FavLikeFilmGrid />;
 }

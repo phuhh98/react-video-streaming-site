@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import {
   AdditionalText,
@@ -9,18 +9,18 @@ import {
   LoginForm,
   StyledButton,
   StyledInput,
-} from "./styledComponents/ContainerStyled";
-import { UnderLinedLink } from "../../utilWrapper/UtilWrapper";
+} from './styledComponents/ContainerStyled';
+import { UnderLinedLink } from '../../utilWrapper/UtilWrapper';
 
 import {
   comparePassword,
   loadUsersList,
   updateCurrentUser,
-} from "../../commons/helperFuncs/helperFuncs";
+} from '../../commons/helperFuncs/helperFuncs';
 
-export default function Login(props) {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+export default function Login() {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
 

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import {
   AdditionalText,
@@ -9,19 +9,19 @@ import {
   SignupForm,
   StyledButton,
   StyledInput,
-} from "./styledComponents/ContainerStyled";
-import { UnderLinedLink } from "../../utilWrapper/UtilWrapper";
+} from './styledComponents/ContainerStyled';
+import { UnderLinedLink } from '../../utilWrapper/UtilWrapper';
 
 import {
   addNewUser,
   loadUsersList,
   updateCurrentUser,
-} from "../../commons/helperFuncs/helperFuncs";
+} from '../../commons/helperFuncs/helperFuncs';
 
-export default function Login(props) {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [retypedPassword, setRetypedPassword] = useState("");
+export default function Signup() {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [retypedPassword, setRetypedPassword] = useState('');
 
   const [userError, setUserError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);

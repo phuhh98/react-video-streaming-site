@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
   MainContent,
   SocialMediaContacts,
-} from "./styledComponents/ContainerStyled";
-import { StyledALink } from "./styledComponents/ContainerStyled";
-import { CursorHover } from "../../utilWrapper/UtilWrapper";
+} from './styledComponents/ContainerStyled';
+import { StyledALink } from './styledComponents/ContainerStyled';
+import { CursorHover } from '../../utilWrapper/UtilWrapper';
 
-import facebookIcon from "../../../images/facebook-f-brands.svg";
-import linkedinIcon from "../../../images/linkedin-in-brands.svg";
+import facebookIcon from '../../../images/facebook-f-brands.svg';
+import linkedinIcon from '../../../images/linkedin-in-brands.svg';
 export default function Contact() {
   return (
     <>
@@ -58,7 +58,7 @@ export default function Contact() {
                 src={linkedinIcon}
                 alt="linkedin icon"
                 height="50"
-                style={{ marginBottom: "-5px" }}
+                style={{ marginBottom: '-5px' }}
               />
             </CursorHover>
           </StyledALink>
