@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   MainContent,
   SocialMediaContacts,
@@ -8,10 +9,16 @@ import { CursorHover } from '../../utilWrapper/UtilWrapper';
 
 import facebookIcon from '../../../images/facebook-f-brands.svg';
 import linkedinIcon from '../../../images/linkedin-in-brands.svg';
+import { authorEmail, authorEmail2 } from '../../../constant/strings';
+
+const MainContentStyled = styled(MainContent)`
+  margin-bottom: 216px;
+`;
+
 export default function Contact() {
   return (
     <>
-      <MainContent>
+      <MainContentStyled>
         <br />
         <h2>Contact me</h2>
         <p>Hoai Phu Huynh, EPAM System Vietnam</p>
@@ -21,15 +28,15 @@ export default function Contact() {
           <ul>
             <li>
               <strong>
-                <StyledALink href="mailto:phu_huynh@epam.com">
-                  phu_huynh@epam.com
+                <StyledALink href={`mailto:${authorEmail}`}>
+                  {authorEmail}
                 </StyledALink>
               </strong>
             </li>
             <li>
               <strong>
-                <StyledALink href="mailto:phuhh98@gmail.com">
-                  phuhh98@gmail.com
+                <StyledALink href={`mailto:${authorEmail2}`}>
+                  {authorEmail2}
                 </StyledALink>
               </strong>
             </li>
@@ -63,17 +70,7 @@ export default function Contact() {
             </CursorHover>
           </StyledALink>
         </SocialMediaContacts>
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </MainContent>
+      </MainContentStyled>
     </>
   );
 }
