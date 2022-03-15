@@ -82,8 +82,7 @@ export default function Show() {
     }
     currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
     if (!favorite) {
-      if (currentUser.favorite.some(item => item.id === id)) {
-      } else {
+      if (!currentUser.favorite.some(item => item.id === id)) {
         currentUser.favorite.push({
           id,
           href: film._links.self.href,
@@ -110,8 +109,7 @@ export default function Show() {
     currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
 
     if (!liked) {
-      if (currentUser.liked.some(item => item.id === id)) {
-      } else {
+      if (!currentUser.liked.some(item => item.id === id)) {
         currentUser.liked.push({
           id,
           href: film._links.self.href,

@@ -60,8 +60,7 @@ export default function FilmCard({ film }) {
     }
     currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
     if (!favorite) {
-      if (currentUser.favorite.some(({ id }) => id === film.id)) {
-      } else {
+      if (!currentUser.favorite.some(({ id }) => id === film.id)) {
         currentUser.favorite.push({
           id: film.id,
           href: film.href,
@@ -90,8 +89,7 @@ export default function FilmCard({ film }) {
     currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
 
     if (!liked) {
-      if (currentUser.liked.some(item => item.id === film.id)) {
-      } else {
+      if (!currentUser.liked.some(item => item.id === film.id)) {
         currentUser.liked.push({
           id: film.id,
           href: film.href,
