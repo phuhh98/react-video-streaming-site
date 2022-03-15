@@ -1,21 +1,23 @@
-import React from "react";
+import React from 'react';
 
 import {
   LoginContainer,
   HeaderContainer,
   LogoContainer,
   NavigationContainer,
-} from "./styledComponents/ContainerStyle";
-import { ImageContainer } from "../utilWrapper/UtilWrapper";
-import logo from "../../images/logo.png";
-import { HeaderTitle } from "./styledComponents/TextStyle";
-import { TitleContainer } from "./styledComponents/ContainerStyle";
+} from './styledComponents/ContainerStyle';
+import { ImageContainer } from '../utilWrapper/UtilWrapper';
+import logo from '../../images/logo.png';
+import { HeaderTitle } from './styledComponents/TextStyle';
+import { TitleContainer } from './styledComponents/ContainerStyle';
 
-import NavLinks from "./subComponents/NavLinks";
-import LoginStatus from "./subComponents/LoginStatus";
-import { Link } from "react-router-dom";
+import NavLinks from './subComponents/NavLinks';
+import LoginStatus from './subComponents/LoginStatus';
+import { Link } from 'react-router-dom';
 
-export default function Header(props) {
+import { appTitle } from '../../constant/strings';
+
+export default function Header() {
   return (
     <HeaderContainer>
       <LogoContainer>
@@ -27,7 +29,7 @@ export default function Header(props) {
         <NavLinks />
       </NavigationContainer>
       <TitleContainer>
-        <HeaderTitle>React video streaming project</HeaderTitle>
+        <HeaderTitle>{appTitle}</HeaderTitle>
       </TitleContainer>
       <LoginContainer>
         <LoginStatus />
