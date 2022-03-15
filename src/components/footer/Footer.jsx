@@ -1,29 +1,30 @@
-import React from "react";
-import { ImageContainer } from "../utilWrapper/UtilWrapper";
+import React from 'react';
+import { ImageContainer } from '../utilWrapper/UtilWrapper';
 import {
   Contact,
   FooterContainer,
   FooterContent,
   LogoContainer,
   StyledALink,
-} from "./styledComponents/ContainerStyled";
+} from './styledComponents/FooterStyles';
 
-import epamLogo from "../../images/EPAM_LOGO_WhiteAndBlue.png";
+import epamLogo from '../../images/EPAM_LOGO_WhiteAndBlue.png';
+import { epamURL, authorEmail } from '../../constant/strings';
 
-export default function Footer(props) {
+export default function Footer() {
   return (
     <>
       <FooterContainer>
         <FooterContent>
           <LogoContainer>
-            <a href="https://www.epam.com/" rel="noreferrer" target="_blank">
+            <a href={epamURL} rel="noreferrer" target="_blank">
               <ImageContainer src={epamLogo} alt="epam logo"></ImageContainer>
             </a>
           </LogoContainer>
           <Contact>
             <h4>Author</h4>
-            <StyledALink href="mailto:phu_huynh@epam.com">
-              phu_huynh@epam.com
+            <StyledALink href={`mailto:${authorEmail}`}>
+              {authorEmail}
             </StyledALink>
           </Contact>
         </FooterContent>
