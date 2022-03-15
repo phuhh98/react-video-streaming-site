@@ -10,3 +10,6 @@ export const genres = [
   'mystery',
   'anime',
 ];
+
+export const noPosterImageURL =
+  'https://static.tvmaze.com/images/no-img/no-img-portrait-text.png';

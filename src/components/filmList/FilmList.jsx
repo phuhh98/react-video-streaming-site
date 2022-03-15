@@ -1,23 +1,31 @@
-import React from "react";
+import React from 'react';
 
-import { Row, Col } from "reactstrap";
+import { Row, Col } from 'reactstrap';
 
-import FilmCard from "../filmCard/FilmCard";
+import FilmCard from '../filmCard/FilmCard';
+import { noPosterImageURL } from '../../constant/values';
 
-export default function FilmList(props) {
+export default function FilmList({ filmList }) {
   return (
     <Row lg="4" md="3" sm="2" xs="1">
-      {props.filmList.map(film => {
+      {filmList.map(film => {
+        let imgSrc = '';
+        if (!!film.image) {
+          if (!!film.image.medium) {
+            imgSrc = film.image.medium;
+          } else {
+            imgSrc = film.image.original;
+          }
+        } else {
+          imgSrc = noPosterImageURL;
+        }
+
         const filmData = {
-          imgSrc: !!film.image
-            ? !!film.image.medium
-              ? film.image.medium
-              : film.image.original
-            : "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png",
+          imgSrc,
           imgAlt: film.name,
           genres: film.genres,
           filmTitle: film.name,
-          rating: !!film.rating.average ? film.rating.average : "N/A",
+          rating: !!film.rating.average ? film.rating.average : 'N/A',
           id: film.id,
           href: film._links.self.href,
         };
