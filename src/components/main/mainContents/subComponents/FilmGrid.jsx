@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { Container } from "reactstrap";
+import React, { useContext, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
-import AppContext from "../../../commons/contexts/AppContext";
-import FilmList from "../../../filmList/FilmList";
-import GenreDropDown from "../../../genreDropDown/GenreDropDown";
-import PrevNextButton from "../../../prevNextButtons/PrevNextButtons";
+import AppContext from '../../../commons/contexts/AppContext';
+import FilmList from '../../../filmList/FilmList';
+import GenreDropDown from '../../../genreDropDown/GenreDropDown';
+import PrevNextButton from '../../../prevNextButtons/PrevNextButtons';
 
-import { useFetchFilmData } from "../../../commons/customHooks/useFetchData";
+import { useFetchFilmData } from '../../../commons/customHooks/useFetchData';
 import {
   FavLikeButton,
   FilmMenuContainer,
   MainContent,
   PrevNextButtonContainer,
-} from "../styledComponents/ContainerStyled";
+} from '../styledComponents/ContainerStyled';
 
 export default function FilmGrid(props) {
   const { filmData, setFilmData, genreList } = useContext(AppContext);
@@ -30,7 +30,7 @@ export default function FilmGrid(props) {
   useFetchFilmData(
     filmData,
     setFilmData,
-    pageData,
+    // pageData,
     setPageData,
     pageNumber,
     setPageNumber,

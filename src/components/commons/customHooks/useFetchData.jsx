@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export function useFetchFilmData(
   filmData,
   setFilmData,
-  pageData,
   setPageData,
   pageNumber,
   setPageNumber,
@@ -92,7 +91,7 @@ export function useFetchFilmData(
 
   //reset page to zero on navigate to home
   useEffect(() => {
-    if (pathname === "/home") {
+    if (pathname === '/home') {
       setPageNumber(0);
     }
   }, [pathname]);
