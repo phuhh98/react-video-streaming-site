@@ -1,13 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { Button } from 'reactstrap';
-
 import { NoUnderLinedLink } from '../utilWrapper/UtilWrapper';
+import { ButtonPrimaryStyled } from './styledComponents/PrevNextButtonsStyles';
 
-export default function PrevNextButton(props) {
-  const pageNumber = props.pageNumber;
-  const setPageNumber = props.setPageNumber;
+export default function PrevNextButton({ pageNumber, setPageNumber }) {
   const pathArr = useLocation().pathname.split('/');
 
   if (pathArr.includes(pageNumber.toString())) {
@@ -25,9 +22,7 @@ export default function PrevNextButton(props) {
           setPageNumber(() => (pageNumber - 1 < 0 ? 0 : pageNumber - 1))
         }
       >
-        <Button color="primary" style={{ marginLeft: '10px' }}>
-          Previous
-        </Button>
+        <ButtonPrimaryStyled>Previous</ButtonPrimaryStyled>
       </NoUnderLinedLink>
 
       <NoUnderLinedLink
@@ -37,10 +32,7 @@ export default function PrevNextButton(props) {
           setPageNumber(pageNumber + 1);
         }}
       >
-        {' '}
-        <Button color="primary" style={{ marginLeft: '10px' }}>
-          Next
-        </Button>
+        <ButtonPrimaryStyled>Next</ButtonPrimaryStyled>
       </NoUnderLinedLink>
     </>
   );
