@@ -1,22 +1,17 @@
 import React from 'react';
 
-import {
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from 'reactstrap';
+import { DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import { NoUnderLinedLink } from '../utilWrapper/UtilWrapper';
 import { firstLetterUpperCase } from '../commons/helperFuncs/helperFuncs';
 import { useParams } from 'react-router-dom';
+import { UncontrolledDropdownStyled } from './styledComponents/GenreDropDownStyles';
 
-export default function GenreDropDown(props) {
-  const genreList = props.genreList; // an Array
+export default function GenreDropDown({ genreList }) {
   const params = useParams();
   const currentGenreTitle = params.genre ? params.genre : 'genre';
   return (
-    <UncontrolledDropdown style={{ display: 'inline-block' }}>
+    <UncontrolledDropdownStyled>
       <DropdownToggle caret color="secondary">
         {firstLetterUpperCase(currentGenreTitle)}
       </DropdownToggle>
@@ -27,6 +22,6 @@ export default function GenreDropDown(props) {
           </NoUnderLinedLink>
         ))}
       </DropdownMenu>
-    </UncontrolledDropdown>
+    </UncontrolledDropdownStyled>
   );
 }
