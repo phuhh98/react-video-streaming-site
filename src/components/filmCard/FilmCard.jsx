@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { Enlarge, StyledLink } from './styledComponent/styledContainer';
-
 import {
   Container,
   Card,
@@ -11,6 +9,9 @@ import {
   CardImg,
   Button,
 } from 'reactstrap';
+import { StyledLink } from './styledComponent/FilmCardStyles';
+import { Enlarge } from '../utilWrapper/UtilWrapper';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { CursorHover } from '../utilWrapper/UtilWrapper';
@@ -31,16 +32,16 @@ export default function FilmCard({ film }) {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
-      user => user.username === currentUsername
+      ({ username }) => username === currentUsername
     );
     if (!currentUser) {
       return;
     }
     const { liked, favorite } = currentUser;
-    if (!!liked && liked.some(item => item.id === film.id)) {
+    if (!!liked && liked.some(({ id }) => id === film.id)) {
       setliked(true);
     }
-    if (!!favorite && favorite.some(item => item.id === film.id)) {
+    if (!!favorite && favorite.some(({ id }) => id === film.id)) {
       setFavorite(true);
     }
   }, [film.id]);
@@ -51,7 +52,7 @@ export default function FilmCard({ film }) {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
-      user => user.username === currentUsername
+      ({ username }) => username === currentUsername
     );
     if (!currentUser) {
       alert(alertLoginFav);
@@ -59,7 +60,7 @@ export default function FilmCard({ film }) {
     }
     currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
     if (!favorite) {
-      if (currentUser.favorite.some(item => item.id === film.id)) {
+      if (currentUser.favorite.some(({ id }) => id === film.id)) {
       } else {
         currentUser.favorite.push({
           id: film.id,
@@ -68,7 +69,7 @@ export default function FilmCard({ film }) {
       }
     } else {
       const itemIndex = currentUser.favorite.findIndex(
-        item => item.id === film.id
+        ({ id }) => id === film.id
       );
       currentUser.favorite.splice(itemIndex, 1);
     }
