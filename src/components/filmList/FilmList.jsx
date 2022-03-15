@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { Row, Col } from 'reactstrap';
-
 import FilmCard from '../filmCard/FilmCard';
+import { Grid, GridItem } from './styledComponents/FilmListStyles';
+
 import { noPosterImageURL } from '../../constant/values';
+import { NA } from '../../constant/strings';
 
 export default function FilmList({ filmList }) {
   return (
-    <Row lg="4" md="3" sm="2" xs="1">
+    <Grid>
       {filmList.map(film => {
         let imgSrc = '';
         if (!!film.image) {
@@ -25,16 +26,16 @@ export default function FilmList({ filmList }) {
           imgAlt: film.name,
           genres: film.genres,
           filmTitle: film.name,
-          rating: !!film.rating.average ? film.rating.average : 'N/A',
+          rating: !!film.rating.average ? film.rating.average : NA,
           id: film.id,
           href: film._links.self.href,
         };
         return (
-          <Col className="bg-light" key={film.id}>
+          <GridItem key={film.id}>
             <FilmCard film={filmData} />
-          </Col>
+          </GridItem>
         );
       })}
-    </Row>
+    </Grid>
   );
 }
