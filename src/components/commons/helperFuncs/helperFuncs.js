@@ -46,7 +46,7 @@ export const updateCurrentUser = function (username) {
 
 export const addNewUser = function (username, password) {
   let users = loadUsersList();
-  users.push({ username: username, password: generatePassword(password) });
+  users.push({ username, password: generatePassword(password) });
   localStorage.setItem('users', JSON.stringify(users));
 };
 
