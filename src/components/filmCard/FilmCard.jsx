@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-  Container,
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardImg,
-  Button,
-} from 'reactstrap';
-import { StyledLink } from './styledComponent/FilmCardStyles';
+  BottomGroup,
+  FilmCardBody,
+  FilmCardContainer,
+  FilmGenres,
+  FilmTitle,
+  PosterImage,
+  StyledLink,
+  Rating,
+  ButtonsGroup,
+} from './styledComponents/FilmCardStyles';
 import { Enlarge } from '../utilWrapper/UtilWrapper';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -47,8 +48,7 @@ export default function FilmCard({ film }) {
   }, [film.id]);
 
   // Onclick favorite button
-  function onClickFavorite(e) {
-    console.log(favorite);
+  function onClickFavorite() {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
@@ -77,7 +77,7 @@ export default function FilmCard({ film }) {
     updateUserList(userList);
   }
 
-  function onClickLiked(e) {
+  function onClickLiked() {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
@@ -111,55 +111,27 @@ export default function FilmCard({ film }) {
   return (
     <>
       <Enlarge>
-        <Card style={{ marginBottom: '20px', height: '550px' }}>
+        <FilmCardContainer>
           <StyledLink to={`/show/${film.id}`}>
-            <CardImg alt={film.imgAlt} src={film.imgSrc} top height="400px" />
+            <PosterImage alt={film.imgAlt} src={film.imgSrc} />
           </StyledLink>
 
-          <CardBody style={{ position: 'relative' }}>
+          <FilmCardBody>
             <StyledLink to={`/show/${film.id}`}>
-              <CardTitle tag="h5">{film.filmTitle}</CardTitle>
+              <FilmTitle>{film.filmTitle}</FilmTitle>
             </StyledLink>
-            <CardSubtitle
-              className="mb-2 text-muted"
-              tag="h6"
-              style={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                display: '-webkit-box',
-                WebkitLineClamp: '2',
-                WebkitBoxOrient: 'vertical',
-              }}
-            >
-              {film.genres.join(' • ')}
-            </CardSubtitle>
-            <Container
-              style={{
-                padding: '0',
-                width: '87%',
-                display: 'flex',
-                justifyContent: 'space-between',
-                position: 'absolute',
-                bottom: '0.7rem',
-              }}
-            >
-              <Button disabled style={{ padding: '5px 10px' }}>
+            <FilmGenres>{film.genres.join(' • ')}</FilmGenres>
+            <BottomGroup>
+              <Rating>
                 Rate: {film.rating}&nbsp;
-                <FontAwesomeIcon icon={faStar} style={{ color: 'yellow' }} />
-              </Button>
-              <div
-                style={{
-                  width: '30%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
+                <FontAwesomeIcon icon={faStar} color="yellow" />
+              </Rating>
+              <ButtonsGroup>
                 <CursorHover>
                   <FontAwesomeIcon
                     icon={faHeart}
                     className="fa-xl"
-                    style={favorite ? { color: 'red' } : { color: 'gray' }}
+                    color={favorite ? 'red' : 'gray'}
                     onClick={onClickFavorite}
                     id={`fav-${film.id}`}
                     title="favorite button"
@@ -170,16 +142,16 @@ export default function FilmCard({ film }) {
                   <FontAwesomeIcon
                     icon={faThumbsUp}
                     className="fa-xl"
-                    style={liked ? { color: 'turquoise' } : { color: 'gray' }}
+                    color={liked ? 'turquoise' : 'gray'}
                     onClick={onClickLiked}
                     id={`liked-${film.id}`}
                     title="liked button"
                   />
                 </CursorHover>
-              </div>
-            </Container>
-          </CardBody>
-        </Card>
+              </ButtonsGroup>
+            </BottomGroup>
+          </FilmCardBody>
+        </FilmCardContainer>
       </Enlarge>
     </>
   );
