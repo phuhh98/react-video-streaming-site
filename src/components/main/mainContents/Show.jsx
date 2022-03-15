@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { Container, Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import { CursorHover, ImageContainer } from "../../utilWrapper/UtilWrapper";
+import { Container } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
+import { CursorHover, ImageContainer } from '../../utilWrapper/UtilWrapper';
 import {
   loadLoginStatus,
   loadUsersList,
   updateUserList,
-} from "../../commons/helperFuncs/helperFuncs";
-import { useParams } from "react-router-dom";
+} from '../../commons/helperFuncs/helperFuncs';
+import { useParams } from 'react-router-dom';
 import {
   Casts,
   Description,
@@ -18,13 +18,18 @@ import {
   Detail,
   FavLikeGroup,
   CastList,
-} from "./styledComponents/ContainerStyled";
-import CastCard from "./subComponents/CastCard";
+  Rating,
+} from './styledComponents/ContainerStyled';
+import CastCard from './subComponents/CastCard';
+
+import { noPosterImageURL } from '../../../constant/values';
+import { NA } from '../../../constant/strings';
 
 export default function Show() {
   let [favorite, setFavorite] = useState(false);
   let [liked, setliked] = useState(false);
   let [film, setFilm] = useState(null);
+  let [imgSrc, setImgSrc] = useState(noPosterImageURL);
   let { id } = useParams();
   //parse id to number to avoid conflict of data saved in localStorage
   id = parseInt(id);
@@ -35,6 +40,13 @@ export default function Show() {
       .then(response => response.json())
       .then(data => {
         setFilm(data);
+        if (!!data.image) {
+          if (!!data.image.original) {
+            setImgSrc(data.image.original);
+          } else if (!!data.image.medium) {
+            setImgSrc(data.image.medium);
+          }
+        }
       });
   }, [id]);
 
@@ -43,7 +55,7 @@ export default function Show() {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
-      user => user.username === currentUsername
+      ({ username }) => username === currentUsername
     );
     if (!currentUser) {
       return;
@@ -58,15 +70,14 @@ export default function Show() {
   }, [id]);
 
   // Onclick favorite button
-  function onClickFavorite(e) {
-    console.log(favorite);
+  function onClickFavorite() {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
-      user => user.username === currentUsername
+      ({ username }) => username === currentUsername
     );
     if (!currentUser) {
-      alert("Login to save to your Favorites");
+      alert('Login to save to your Favorites');
       return;
     }
     currentUser.favorite = !!currentUser.favorite ? currentUser.favorite : [];
@@ -74,7 +85,7 @@ export default function Show() {
       if (currentUser.favorite.some(item => item.id === id)) {
       } else {
         currentUser.favorite.push({
-          id: id,
+          id,
           href: film._links.self.href,
         });
       }
@@ -86,14 +97,14 @@ export default function Show() {
     updateUserList(userList);
   }
 
-  function onClickLiked(e) {
+  function onClickLiked() {
     const userList = loadUsersList();
     const currentUsername = loadLoginStatus().currentUser;
     const currentUser = userList.find(
       user => user.username === currentUsername
     );
     if (!currentUser) {
-      alert("Login to save to your Liked");
+      alert('Login to save to your Liked');
       return;
     }
     currentUser.liked = !!currentUser.liked ? currentUser.liked : [];
@@ -102,7 +113,7 @@ export default function Show() {
       if (currentUser.liked.some(item => item.id === id)) {
       } else {
         currentUser.liked.push({
-          id: id,
+          id,
           href: film._links.self.href,
         });
       }
@@ -121,21 +132,13 @@ export default function Show() {
         <Container>
           <ShowDescriptionContainer>
             <FilmImage>
-              <ImageContainer
-                src={
-                  !!film.image
-                    ? !!film.image.original
-                      ? film.image.original
-                      : film.image.medium
-                    : "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png"
-                }
-              ></ImageContainer>
+              <ImageContainer src={imgSrc}></ImageContainer>
               <FavLikeGroup>
                 <CursorHover>
                   <FontAwesomeIcon
                     icon={faHeart}
                     className="fa-xl"
-                    style={favorite ? { color: "red" } : { color: "gray" }}
+                    color={favorite ? 'red' : 'gray'}
                     onClick={onClickFavorite}
                     id={`fav-${film.id}`}
                     title="favorite button"
@@ -146,7 +149,7 @@ export default function Show() {
                   <FontAwesomeIcon
                     icon={faThumbsUp}
                     className="fa-xl"
-                    style={liked ? { color: "turquoise" } : { color: "gray" }}
+                    color={liked ? 'turquoise' : 'gray'}
                     onClick={onClickLiked}
                     id={`liked-${film.id}`}
                     title="liked button"
@@ -156,20 +159,17 @@ export default function Show() {
             </FilmImage>
             <Description>
               <h1>{film.name}</h1>
-              <h4>Genres: {film.genres.join(" • ")}</h4>
+              <h4>Genres: {film.genres.join(' • ')}</h4>
               <h4>Country: {film.network.country.name}</h4>
               <h4>Status: {film.status}</h4>
               <div>
-                <Button
-                  disabled
-                  style={{ padding: "5px 10px", fontSize: "1.2rem" }}
-                >
+                <Rating>
                   <span>
-                    Rate: {!!film.rating.average ? film.rating.average : "N/A"}
+                    Rate: {!!film.rating.average ? film.rating.average : NA}
                     &nbsp;
                   </span>
-                  <FontAwesomeIcon icon={faStar} style={{ color: "yellow" }} />
-                </Button>
+                  <FontAwesomeIcon icon={faStar} color="yellow" />
+                </Rating>
               </div>
 
               <h4>Description</h4>
@@ -182,15 +182,19 @@ export default function Show() {
               <h3>Casts</h3>
               <CastList>
                 {film._embedded.cast.map(cast => {
+                  let image = noPosterImageURL;
+                  if (!!cast.person.image) {
+                    if (!!cast.person.image.medium) {
+                      image = cast.person.image.medium;
+                    } else {
+                      image = cast.person.image.original;
+                    }
+                  }
                   return (
                     <CastCard
                       key={cast.character.name}
                       cast={{
-                        image: !!cast.person.image
-                          ? !!cast.person.image.medium
-                            ? cast.person.image.medium
-                            : cast.person.image.original
-                          : "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png",
+                        image,
                         name: cast.person.name,
                         role: cast.character.name,
                       }}

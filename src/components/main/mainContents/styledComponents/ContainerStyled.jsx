@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Container, Button } from "reactstrap";
-import { NoUnderLinedLink } from "../../../utilWrapper/UtilWrapper";
+import { Container, Button } from 'reactstrap';
+import { NoUnderLinedLink } from '../../../utilWrapper/UtilWrapper';
 
 export const MainContent = styled(Container)`
   margin-top: 20px;
@@ -184,10 +184,8 @@ export const CastCardContainer = styled.div`
   }
 `;
 
-export const Enlarge = styled.div`
-  &:hover > :first-child {
-    transform: scale(1.05);
-    transition: width, height 0.3s ease-in-out 2s;
-    z-index: 1;
-  }
+const DisabledButton = props => <Button disabled {...props} />;
+export const Rating = styled(DisabledButton)`
+  padding: 5px 10px;
+  font-size: 1.2rem;
 `;
