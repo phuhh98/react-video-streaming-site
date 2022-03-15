@@ -5,11 +5,11 @@ import {
   HeaderContainer,
   LogoContainer,
   NavigationContainer,
-} from './styledComponents/ContainerStyle';
+  TitleContainer,
+  HeaderTitle,
+} from './styledComponents/HeaderStyles';
 import { ImageContainer } from '../utilWrapper/UtilWrapper';
 import logo from '../../images/logo.png';
-import { HeaderTitle } from './styledComponents/TextStyle';
-import { TitleContainer } from './styledComponents/ContainerStyle';
 
 import NavLinks from './subComponents/NavLinks';
 import LoginStatus from './subComponents/LoginStatus';

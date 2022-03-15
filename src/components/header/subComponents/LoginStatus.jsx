@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { loadLoginStatus } from '../../commons/helperFuncs/helperFuncs';
-import { ButtonText, DisplayedUserName } from '../styledComponents/TextStyle';
+import {
+  ButtonText,
+  DisplayedUserName,
+} from './styledComponents/LoginStatusStyles';
 
-export default function LoginStatus(props) {
+export default function LoginStatus() {
   const loginStatus = loadLoginStatus();
   const [redirect, setRedirect] = useState(false);
   const [status, setStatus] = useState(!!loginStatus.status);

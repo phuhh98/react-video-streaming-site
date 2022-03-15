@@ -3,8 +3,8 @@ import { Nav, NavItem } from 'reactstrap';
 
 import { WhiteGrayLink } from '../../utilWrapper/UtilWrapper';
 
-import { NavLinkText } from '../styledComponents/TextStyle';
-export default function LoginStatus(props) {
+import { NavLinkText } from './styledComponents/NavLinksStyles';
+export default function LoginStatus() {
   return (
     <>
       <Nav pills>
