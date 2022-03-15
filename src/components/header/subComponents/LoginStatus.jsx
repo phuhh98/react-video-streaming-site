@@ -30,7 +30,7 @@ export default function LoginStatus() {
     if (redirect) {
       setRedirect(false);
     }
-  });
+  }, [redirect]);
 
   return (
     <>
