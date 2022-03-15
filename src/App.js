@@ -6,7 +6,7 @@ import {
   sortAToZ,
 } from './components/commons/helperFuncs/helperFuncs';
 
-import { genres } from './constant/data';
+import { genres } from './constant/values';
 
 function App() {
   const [filmData, setFilmData] = useState([]);
