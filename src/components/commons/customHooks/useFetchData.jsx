@@ -57,6 +57,7 @@ export function useFetchFilmData(
                 if (item.id === filteredItem.id) {
                   return true;
                 }
+                return false;
               })
             ) {
               return acc;
@@ -94,13 +95,13 @@ export function useFetchFilmData(
     if (pathname === '/home') {
       setPageNumber(0);
     }
-  }, [pathname]);
+  }, [pathname, setPageNumber]);
 
   //reset queryPage and pageNumber when change genre filter
   useEffect(() => {
     setQueryPage(0);
     setPageNumber(0);
-  }, [params.genre]);
+  }, [params.genre, setPageNumber]);
 }
 
 function noFilter(arr) {
