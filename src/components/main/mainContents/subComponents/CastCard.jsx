@@ -1,7 +1,7 @@
-import React from "react";
-import { Enlarge } from "../../../filmCard/styledComponent/styledContainer";
-import { ImageContainer } from "../../../utilWrapper/UtilWrapper";
-import { CastCardContainer } from "../styledComponents/ContainerStyled";
+import React from 'react';
+// import { Enlarge } from '../../../filmCard/styledComponent/FilmCardStyles';
+import { ImageContainer, Enlarge } from '../../../utilWrapper/UtilWrapper';
+import { CastCardContainer } from '../styledComponents/ContainerStyled';
 
 export default function CastCard({ cast }) {
   return (
