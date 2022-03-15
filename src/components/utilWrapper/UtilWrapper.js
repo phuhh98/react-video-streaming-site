@@ -44,3 +44,11 @@ export const UnderLinedLink = styled(Link)`
     text-decoration: underline;
   }
 `;
+
+export const Enlarge = styled.div`
+  &:hover > :first-child {
+    transform: scale(1.05);
+    transition: width, height 0.3s ease-in-out 2s;
+    z-index: 1;
+  }
+`;
