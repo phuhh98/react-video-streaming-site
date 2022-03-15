@@ -30,7 +30,6 @@ export default function FilmGrid(props) {
   useFetchFilmData(
     filmData,
     setFilmData,
-    // pageData,
     setPageData,
     pageNumber,
     setPageNumber,
